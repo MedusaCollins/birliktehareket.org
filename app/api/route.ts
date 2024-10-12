@@ -1,4 +1,5 @@
-import clientPromise from "@/lib/mongodb";
+import clientPromise from "@/lib/database/mongodb";
+import { HttpErrorCodes } from "@/lib/enums/httpErrorCodes";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -12,6 +13,6 @@ export async function GET() {
     return NextResponse.json({ success: true, data });
   } catch (error) {
     console.error('MongoDB Hatası:', error);
-    return NextResponse.json({ success: false, message: 'Veri çekilirken hata oluştu.' }, { status: 500 });
+    return NextResponse.json({ success: false, message: 'Veri çekilirken hata oluştu.' }, { status: HttpErrorCodes.INTERNAL_SERVER_ERROR });
   }
 }
