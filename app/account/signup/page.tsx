@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "@/lib/validations/authSchemas";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
-import { account, server } from "@/lib/helpers/toastNotification";
+import { account } from "@/lib/helpers/toastNotification";
 import { z } from "zod";
 
 type SignupFormData = z.infer<typeof signupSchema>;
@@ -21,19 +21,16 @@ export default function Signup() {
     resolver: zodResolver(signupSchema),
   });
 
-  // Form gönderildiğinde çağrılacak fonksiyon
   const onSubmit = async (data: SignupFormData) => {
     try {
-      const response = await axios.post("/api/auth", data);
+      const response = await axios.post("/api/auth/signup", data);
       console.log(response.data);
 
       toast(account.created);
       reset();
     } catch (error: any) {
       if (error.response) {
-        console.error(error.response.data);
         toast({
-          title: "Error",
           description: error.response.data.message,
           variant: "destructive",
           duration: 2000,
@@ -56,11 +53,11 @@ export default function Signup() {
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="username">Username</Label>
-                  <Input id="username" placeholder="Max" {...register("username")} />
-                  {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
-                </div>
+              <div className="grid gap-2">
+                <Label htmlFor="username">Username</Label>
+                <Input id="username" placeholder="Max" {...register("username")} />
+                {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
+              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -87,11 +84,8 @@ export default function Signup() {
               <Button
                 variant="outline"
                 className="w-full"
-                onClick={() => {
-                  toast(account.created);
-                }}
               >
-                Sign up with GitHub
+                Sign up with Google
               </Button>
             </div>
           </form>
