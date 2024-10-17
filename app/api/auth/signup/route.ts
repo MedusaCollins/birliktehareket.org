@@ -44,13 +44,13 @@ export async function POST(request: Request) {
     const result = await collection.insertOne(newAccount);
     return NextResponse.json(
       { success: true, account: { username, email }, insertedId: result.insertedId },
-      { status: 201 }
+      { status: HttpStatusCode.Created }
     );
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       { success: false, message: "Error creating account." },
-      { status: 500 }
+      { status: HttpStatusCode.InternalServerError }
     );
   }
 }

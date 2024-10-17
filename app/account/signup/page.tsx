@@ -1,9 +1,22 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "@/lib/validations/authSchemas";
@@ -17,17 +30,20 @@ type SignupFormData = z.infer<typeof signupSchema>;
 export default function Signup() {
   const { toast } = useToast();
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<SignupFormData>({
+  const form = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
   });
 
-  const onSubmit = async (data: SignupFormData) => {
+  async function onSubmit(data: SignupFormData) {
     try {
-      const response = await axios.post("/api/auth/signup", data);
-      console.log(response.data);
-
+      await axios.post("/api/auth/signup", data);
       toast(account.created);
-      reset();
+      form.reset();
     } catch (error: any) {
       if (error.response) {
         toast({
@@ -39,7 +55,7 @@ export default function Signup() {
         console.error(error);
       }
     }
-  };
+  }
 
   return (
     <div className="flex justify-center items-center w-full h-screen">
@@ -50,45 +66,66 @@ export default function Signup() {
             Enter your information to create an account
           </CardDescription>
         </CardHeader>
+
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" placeholder="Max" {...register("username")} />
-                {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  {...register("email")}
-                />
-                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  {...register("password")}
-                />
-                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-              </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Max" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="m@example.com"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <Button type="submit" className="w-full">
                 Create an account
               </Button>
-              <Button
-                variant="outline"
-                className="w-full"
-              >
-                Sign up with Google
-              </Button>
-            </div>
-          </form>
+            </form>
+          </Form>
+
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link href="/account/login" className="underline">
@@ -100,4 +137,3 @@ export default function Signup() {
     </div>
   );
 }
-
