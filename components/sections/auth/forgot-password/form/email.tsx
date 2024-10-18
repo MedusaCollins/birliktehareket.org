@@ -70,7 +70,7 @@ const EmailForm = ({ onFormSubmit }) => {
             </Form>
             <div className="mt-4 text-center text-sm">
                 Remember your password?{" "}
-                <Link href="/account/login" className="underline">
+                <Link href="/auth/login" className="underline">
                     Log in
                 </Link>
             </div>

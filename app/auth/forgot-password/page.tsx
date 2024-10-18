@@ -1,7 +1,7 @@
 "use client";
 
-import EmailForm from "@/components/sections/account/forgot-password/form/email";
-import VerificationCodeForm from "@/components/sections/account/forgot-password/form/verification";
+import EmailForm from "@/components/sections/auth/forgot-password/form/email";
+import VerificationCodeForm from "@/components/sections/auth/forgot-password/form/verification";
 import { useState } from "react";
 import axios from "axios";
 import { z } from "zod";
@@ -12,7 +12,7 @@ import {
 } from "@/lib/validations/authSchemas";
 import { useToast } from "@/hooks/use-toast";
 import { auth } from "@/lib/helpers/toastNotification";
-import ResetPasswordForm from "@/components/sections/account/forgot-password/form/reset";
+import ResetPasswordForm from "@/components/sections/auth/forgot-password/form/reset";
 import { useRouter } from "next/navigation";
 
 type forgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
@@ -56,7 +56,7 @@ const ForgotPassword = () => {
         newPassword: data.newPassword,
       });
       toast(auth.passwordUpdated);
-      router.push("/account/login");
+      router.push("/auth/login");
     } catch (error) {
       handleError(error);
     }
