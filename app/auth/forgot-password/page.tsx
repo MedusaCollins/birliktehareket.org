@@ -56,7 +56,11 @@ const ForgotPassword = () => {
         newPassword: data.newPassword,
       });
       toast(auth.passwordUpdated);
-      router.push("/auth/login");
+      await axios.post("/api/auth/login", {
+        email: savedEmail,
+        password: data.newPassword,
+      });
+      router.push("/");
     } catch (error) {
       handleError(error);
     }

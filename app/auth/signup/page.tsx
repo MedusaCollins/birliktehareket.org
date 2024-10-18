@@ -24,11 +24,12 @@ import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 import { account } from "@/lib/helpers/toastNotification";
 import { z } from "zod";
-
+import { useRouter } from "next/navigation";
 type SignupFormData = z.infer<typeof signupSchema>;
 
 export default function Signup() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
@@ -43,7 +44,12 @@ export default function Signup() {
     try {
       await axios.post("/api/auth/signup", data);
       toast(account.created);
+      await axios.post("/api/auth/login", {
+        email: data.email,
+        password: data.password,
+      });
       form.reset();
+      router.push("/");
     } catch (error: any) {
       if (error.response) {
         toast({

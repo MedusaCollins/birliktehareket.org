@@ -18,12 +18,13 @@ import {
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { account } from "@/lib/helpers/toastNotification";
+import { useRouter } from "next/navigation";
 
 type loginFormData = z.infer<typeof loginSchema>;
 
 export default function Login() {
   const { toast } = useToast();
-
+  const router = useRouter();
   const form = useForm<loginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -37,6 +38,7 @@ export default function Login() {
       await axios.post("/api/auth/login", data);
       toast(account.login);
       form.reset();
+      router.push("/");
     } catch (error: any) {
       if (error.response) {
         toast({
