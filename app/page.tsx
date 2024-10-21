@@ -1,7 +1,13 @@
 "use client";
 
+import Hero from "@/components/sections/landing/hero";
+import Overview from "@/components/sections/landing/overview";
+
 export default function Home() {
   return (
-    <div className="flex justify-center items-center w-full h-screen">test</div>
+    <div className="flex flex-col gap-2 w-full h-screen bg-black">
+      <Hero />
+      <Overview />
+    </div>
   );
 }
