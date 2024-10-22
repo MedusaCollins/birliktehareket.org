@@ -31,7 +31,7 @@ export default function Overview() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center w-full p-5 bg-red-500 rounded-t-3xl bg-white">
+    <div className="flex justify-center items-center w-full p-5 rounded-t-3xl bg-white">
       <div className="container w-full space-y-5 ">
         <h1 className="text-xl font-semibold text-slate-900">
           Önemsediğin şeyler hakkında yapılmış olan yürüyüşleri keşfet
@@ -52,11 +52,8 @@ export default function Overview() {
             </SelectContent>
           </Select>
         </div>
-        {posts.length < 1 ? (
-          <Loading loading={true} />
-        ) : (
-          <Posts posts={posts} />
-        )}
+        {posts.length < 1 ? <Loading loading={true} /> : <Posts posts={posts} />}
+        {/* TODO: Need a fix in mobile views (posts.tsx loading.tsx) */}
       </div>
     </div>
   );
