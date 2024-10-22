@@ -8,6 +8,8 @@ export default function Hero() {
       <h1 className="text-5xl font-medium max-w-[300px] text-center">
         Daha Aydınlık Yarınlar İçin!
       </h1>
+      {/* TODO: Add an image to background */}
+
       <Button variant="secondary" size="lg">
         Yürüyüş Düzenle
       </Button>

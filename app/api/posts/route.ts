@@ -2,7 +2,7 @@ import { Post } from "@/lib/types";
 import { NextResponse } from "next/server";
 
 // Sample data
-export const fakeData: Post[] = [
+const fakeData: Post[] = [
   {
     title: "Climate Action March",
     desciption: "Join us in a march to raise awareness about climate change.",
@@ -14,7 +14,7 @@ export const fakeData: Post[] = [
       date: new Date("2024-11-12"),
       location: { start: "Central Park", end: "City Hall" },
       minimumPeopleExpectation: 500,
-      subject: "Climate Change Awareness",
+      subject: "Politika",
     },
     supporters: [
       { userId: "user123", date: new Date("2024-10-01") },
@@ -43,7 +43,7 @@ export const fakeData: Post[] = [
       date: new Date("2024-12-05"),
       location: { start: "Liberty Square", end: "Union Building" },
       minimumPeopleExpectation: 300,
-      subject: "Human Rights and Equality",
+      subject: "Ekonomi",
     },
     moderators: [{ userId: "mod789" }],
     supporters: [{ userId: "user789", date: new Date("2024-10-12") }],
@@ -59,7 +59,7 @@ export const fakeData: Post[] = [
       date: new Date("2024-11-20"),
       location: { start: "Harbor Front", end: "Beachside" },
       minimumPeopleExpectation: 200,
-      subject: "Ocean Conservation",
+      subject: "Politika",
     },
     moderators: [{ userId: "mod101" }, { userId: "mod202" }],
     updates: [
@@ -78,12 +78,18 @@ export async function GET(request) {
   // Get page and limit from query parameters
   const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "10");
+  const subject = searchParams.get("subject");
 
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
+  let filteredData = fakeData;
+
+  if (subject != "null") {
+    filteredData = fakeData.filter((post) => post.detail.subject == subject);
+  }
 
   // Slice the data for pagination
-  const paginatedData = fakeData.slice(startIndex, endIndex);
+  const paginatedData = filteredData.slice(startIndex, endIndex);
 
   // Response
   return NextResponse.json({
