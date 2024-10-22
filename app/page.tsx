@@ -5,7 +5,7 @@ import Overview from "@/components/sections/landing/overview";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-2 w-full h-screen bg-black">
+    <div className="flex flex-col gap-2 w-full min-h-screen bg-black">
       <Hero />
       <Overview />
     </div>

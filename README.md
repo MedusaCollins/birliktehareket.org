@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Birlikte Hareket
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Welcome to **Birlikte Hareket**! This project aims to keep you informed about strikes or other public demonstrations happening in the country. Through this platform, you can stay updated on upcoming events, join walks, and access detailed information about them. You’ll be able to see who is organizing the event, the time and location of the walk (including start and end points), and a list of participants who have signed up. Additionally, you can create your own walks and invite others to participate.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Installation
+
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/MedusaCollins/birliktehareket.org.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd birliktehareket.org
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm i
+   ```
+
+4. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The app will be available at `http://localhost:3000`.
+
+## Project Structure
+
+Here's an overview of the project's structure and the purpose of key files and directories:
+
+```
+birliktehareket.org/
+│
+├── public/               # Static files such as images and fonts
+│
+├── app/
+│   ├── components/       # Reusable UI components
+│   ├── pages/            # Next.js page components
+│   ├── api/              # Server-side API routes for handling requests
+│   ├── auth/             # Authentication logic, including login, signup, and session management
+│
+├── lib/                   # Utility functions and third-party library integrations
+│
+├── hooks/                 # Custom hooks for managing state, side effects, and other reusable logic
+│
+└── package.json          # Project dependencies and scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contribution Guideline
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We welcome contributions! Here's how you can contribute:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Fork the repository.
 
-## Learn More
+2. Create a new branch with a descriptive name:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Make your changes and commit them:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   git commit -m "Add a detailed description of your changes"
+   ```
 
-## Deploy on Vercel
+4. Push to your branch:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git push origin feature/your-feature-name
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Create a pull request on GitHub, explaining the purpose of your changes.
+
+Please make sure to follow our coding standards and provide clear descriptions in your pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
