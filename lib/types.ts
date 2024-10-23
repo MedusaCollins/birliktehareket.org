@@ -1,6 +1,6 @@
 export type Post = {
   title: string;
-  desciption: string;
+  description: string;
   organizer: string;
   moderators?: {
     userId: string;

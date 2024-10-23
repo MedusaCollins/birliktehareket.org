@@ -14,7 +14,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Overview() {
-  const [subjects, setSubject] = useState<string[]>(["Politika", "Ekonomi"]);
+  const [subjects] = useState<string[]>(["Politika", "Ekonomi"]);
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
 
   const [posts, setPosts] = useState<Post[]>([]);
@@ -31,13 +31,12 @@ export default function Overview() {
         console.error("Error fetching posts:", error);
       }
     };
-    console.log("test");
     fetchPosts();
   }, [selectedSubject]);
 
   return (
     <div className="flex justify-center items-center w-full p-5 rounded-t-3xl bg-white">
-      <div className="container w-full space-y-5 ">
+      <div className="space-y-5">
         <h1 className="text-xl font-semibold text-slate-900">
           Önemsediğin şeyler hakkında yapılmış olan yürüyüşleri keşfet
         </h1>
@@ -55,7 +54,11 @@ export default function Overview() {
             </SelectContent>
           </Select>
         </div>
-        {posts.length < 1 ? <Loading loading={true} /> : <Posts posts={posts} />}
+        {posts.length < 1 ? (
+          <Loading loading={true} />
+        ) : (
+          <Posts posts={posts} />
+        )}
         {/* TODO: Need a fix in mobile views (posts.tsx loading.tsx) */}
       </div>
     </div>
