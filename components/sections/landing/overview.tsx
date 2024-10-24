@@ -1,28 +1,24 @@
 "use client";
 
 import Loading from "@/components/ui/(blocks)/loading";
-import Posts from "@/components/ui/(blocks)/posts";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Post } from "@/lib/types";
+import PostCard from "@/components/ui/(blocks)/postCard";
+import { Post, PostList } from "@/lib/types";
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css"; // Swiper stillerini eklemeyi unutma
 
 export default function Overview() {
-  const [subjects] = useState<string[]>(["Politika", "Ekonomi"]);
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostList[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("/api/posts?page=1&limit=5");
+        const response = await axios.get(
+          `/api/posts?page=1&limit=10&subject=categorized`,
+        );
         setPosts(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -31,29 +27,47 @@ export default function Overview() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center w-full p-5 rounded-t-3xl bg-white">
-      <div className="container w-full space-y-5 ">
-        <h1 className="text-xl font-semibold text-slate-900">
-          Önemsediğin şeyler hakkında yapılmış olan yürüyüşleri keşfet
+    <div className="flex justify-center items-center p-5 rounded-t-3xl bg-white">
+      <div className="space-y-5">
+        <h1 className="text-xl font-semibold text-slate-900 px-2">
+          Önemsediğin konular hakkında yapılmış olan yürüyüşleri keşfet
         </h1>
-        {/* TODO: Add an image to background */}
+        {posts.length < 1 ? (
+          <Loading loading={true} />
+        ) : (
+          <div>
+            {posts.map((subject, index) => (
+              <div
+                key={index}
+                className="border-b-2 p-2 w-screen max-w-[1200px] overflow-auto"
+              >
+                <div className="flex justify-between items-center">
+                  <Link
+                    href={"/discover/categories/" + subject.subject}
+                    className="text-lg font-semibold text-slate-600 uppercase hover:underline"
+                  >
+                    {subject.subject}
+                  </Link>
+                </div>
 
-        <div>
-          <Select>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Konu seç" />
-            </SelectTrigger>
-            <SelectContent>
-              {subjects.map((value, index) => (
-                <SelectItem key={index} value={value}>
-                  {value}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        {posts.length < 1 ? <Loading loading={true} /> : <Posts posts={posts} />}
-        {/* TODO: Need a fix in mobile views (posts.tsx loading.tsx) */}
+                <Swiper
+                  slidesPerView={1}
+                  breakpoints={{
+                    540: { slidesPerView: 2 },
+                    768: { slidesPerView: 3 },
+                    1024: { slidesPerView: 4 },
+                  }}
+                >
+                  {subject.posts.map((post: Post, index: number) => (
+                    <SwiperSlide key={index}>
+                      <PostCard post={post} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

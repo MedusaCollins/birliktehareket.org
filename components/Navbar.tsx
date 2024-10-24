@@ -5,7 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/logo.svg";
 import { Button, buttonVariants } from "./ui/button";
-import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./ui/sheet";
 import { Menu } from "lucide-react";
 
 export default function Navbar(): JSX.Element {
@@ -27,9 +33,8 @@ export default function Navbar(): JSX.Element {
 
   return (
     <header
-      className={`w-full flex fixed px-6 items-center justify-center transition-all ${
-        scrollY ? "shadow-md backdrop-blur-sm bg-transparent bg-opacity-20" : "bg-transparent"
-      }`}
+      className={`w-full flex fixed px-6 items-center justify-center transition-all z-50
+      ${scrollY ? "shadow-md backdrop-blur-sm bg-white" : "bg-gray-100"}`}
     >
       <nav className="mx-auto max-w-7xl w-full items-center justify-between flex">
         <div>
@@ -72,25 +77,37 @@ export default function Navbar(): JSX.Element {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link href="/about" className={buttonVariants({ variant: "ghost" })}>
+              <Link
+                href="/about"
+                className={buttonVariants({ variant: "ghost" })}
+              >
                 About
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link href="/contact" className={buttonVariants({ variant: "ghost" })}>
+              <Link
+                href="/contact"
+                className={buttonVariants({ variant: "ghost" })}
+              >
                 Contact
               </Link>
             </SheetClose>
             <SheetClose asChild>
               <SheetHeader>
-                <Link href="/auth/signup" className={buttonVariants({ variant: "secondary" })}>
+                <Link
+                  href="/auth/signup"
+                  className={buttonVariants({ variant: "secondary" })}
+                >
                   <span className="font-semibold">Sign up</span>
                 </Link>
               </SheetHeader>
             </SheetClose>{" "}
             <SheetClose asChild>
               <SheetHeader>
-                <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
+                <Link
+                  href="/auth/login"
+                  className={buttonVariants({ variant: "default" })}
+                >
                   <span className="font-semibold">Log in</span>
                 </Link>
               </SheetHeader>

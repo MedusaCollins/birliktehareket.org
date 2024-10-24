@@ -1,6 +1,11 @@
+export type PostList = {
+  subject: string;
+  posts: Post[];
+};
+
 export type Post = {
   title: string;
-  desciption: string;
+  description: string;
   organizer: string;
   moderators?: {
     userId: string;

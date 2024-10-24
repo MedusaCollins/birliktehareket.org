@@ -3,28 +3,33 @@ import { Skeleton } from "../skeleton";
 const loading = ({ loading }: { loading: boolean }) => {
   if (loading) {
     return (
-      <>
-        <div className="grid grid-cols-2 gap-10">
-          <div className="flex flex-col space-y-3">
-            <Skeleton className="h-full w-3/4 rounded-xl" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-3/4" />
-              <Skeleton className="h-4 w-2/4" />
+      <div className="flex flex-col space-y-3 overflow-hidden">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div
+            key={index}
+            className="border-b-2 pb-5 px-2 max-w-[1200px] w-screen h-[346px]"
+          >
+            <Skeleton className="h-4 w-[100px]" />
+            <div className="flex overflow-hidden">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col space-y-3 p-5 rounded-md group h-fit w-[287px]"
+                >
+                  <Skeleton className="h-[148px] w-[247px] rounded-xl mb-2" />
+
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-[230px] mb-5" />
+                    <Skeleton className="h-3 w-[200px]" />
+                    <Skeleton className="h-2.5 w-[247px]" />
+                    <Skeleton className="h-2.5 w-[210px]" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="col-span-1 grid grid-cols-2 gap-8">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <div key={index} className="flex flex-col space-y-3">
-                <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-[250px]" />
-                  <Skeleton className="h-4 w-[200px]" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </>
+        ))}
+      </div>
     );
   } else {
     return <></>;
