@@ -1,11 +1,11 @@
 import { randomBytes } from "crypto";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/database/mongodb";
 import { HttpStatusCode } from "axios";
 
 const CODE_EXPIRY_TIME = 15 * 60 * 1000;
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const client = await clientPromise;
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     if (!email) {
       return NextResponse.json(
         { success: false, message: "Email is required." },
-        { status: HttpStatusCode.BadRequest }
+        { status: HttpStatusCode.BadRequest },
       );
     }
 
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "Email not found." },
-        { status: HttpStatusCode.NotFound }
+        { status: HttpStatusCode.NotFound },
       );
     }
 
@@ -33,18 +33,18 @@ export async function POST(request: Request) {
 
     await collection.updateOne(
       { email },
-      { $set: { resetCode: verificationCode, resetCodeExpiry: expiryTime } }
+      { $set: { resetCode: verificationCode, resetCodeExpiry: expiryTime } },
     );
 
     return NextResponse.json(
       { success: true, message: "Verification code sent to email." },
-      { status: HttpStatusCode.Ok }
+      { status: HttpStatusCode.Ok },
     );
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       { success: false, message: "Error sending verification code." },
-      { status: HttpStatusCode.InternalServerError }
+      { status: HttpStatusCode.InternalServerError },
     );
   }
 }

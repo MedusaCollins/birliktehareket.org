@@ -1,5 +1,5 @@
 import { pbkdf2Sync, randomBytes } from "crypto";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/database/mongodb";
 import { HttpStatusCode } from "axios";
 
@@ -7,7 +7,7 @@ const ITERATIONS = 100000;
 const KEY_LENGTH = 64;
 const DIGEST = "sha512";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const client = await clientPromise;

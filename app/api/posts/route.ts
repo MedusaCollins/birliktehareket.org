@@ -1,5 +1,5 @@
 import { Post } from "@/lib/types";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const fakeData: Post[] = [
   {
@@ -78,7 +78,7 @@ const fakeData: Post[] = [
   },
 ];
 
-export async function GET(request) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
 
   // Query parametrelerini al

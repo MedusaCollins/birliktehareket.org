@@ -80,10 +80,20 @@ const ForgotPassword = () => {
     }
   };
 
-  const handleError = (error: any) => {
-    if (error.response && error.response.data && error.response.data.message) {
+  const handleError = (error: unknown) => {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "response" in error &&
+      error.response &&
+      typeof error.response === "object" &&
+      "data" in error.response &&
+      error.response.data &&
+      typeof error.response.data === "object" &&
+      "message" in error.response.data
+    ) {
       toast({
-        description: error.response.data.message,
+        description: (error.response.data as { message: string }).message, // message'ı güvenle kullanabilirsin
         variant: "destructive",
         duration: 2000,
       });
