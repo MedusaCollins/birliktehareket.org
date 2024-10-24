@@ -11,7 +11,7 @@ function formatPeople(peopleNumber: number) {
   return peopleNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const PostCard: React.FC<PostCardProps> = ({ post, isLarge = false }) => {
+const PostCard: React.FC<PostCardProps> = ({ post }) => {
   const currentSupporters = post.supporters?.length || 0;
   const minimumExpectation = post.detail.minimumPeopleExpectation;
 
@@ -21,29 +21,23 @@ const PostCard: React.FC<PostCardProps> = ({ post, isLarge = false }) => {
       : "0%";
 
   {
-    /* TODO: Responsive is broken and this design need to be refactored. */
-  }
-
-  {
-    /* TODO: Change link to walk detail page.. */
+    /* TODO: Change link to walk detail page and little bit of design. */
   }
   return (
     <Link
       href="/"
-      className={`flex flex-col space-y-3 hover:bg-slate-200/30 transition-all cursor-pointer mx-auto p-5 rounded-md group h-fit ${isLarge ? " w-[530px] mr-5" : " w-[287px]"}`}
+      className="flex flex-col space-y-3 hover:bg-slate-200/30 transition-all cursor-pointer p-5 rounded-md group h-fit w-[287px]"
     >
       <Image
         src={post.images[0]}
         alt="post-image"
-        width={isLarge ? 500 : 520}
+        width={520}
         height={10}
-        className={`rounded-xl transition-all ${isLarge ? "group-hover:scale-[1.02]" : "group-hover:scale-105"}`}
+        className="rounded-xl transition-all group-hover:scale-105"
       />
 
       <div className="space-y-2">
-        <h1
-          className={`text-${isLarge ? "xl" : "lg"} font-semibold overflow-hidden truncate whitespace-nowrap`}
-        >
+        <h1 className="text-lg font-semibold overflow-hidden truncate whitespace-nowrap">
           {post.title}
         </h1>
 
@@ -59,9 +53,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, isLarge = false }) => {
         </div>
 
         <p className="text-sm text-slate-700 overflow-hidden truncate whitespace-nowrap">
-          {isLarge
-            ? post.description
-            : `${formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşü destekliyor!`}
+          {`${formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşü destekliyor!`}
         </p>
       </div>
     </Link>

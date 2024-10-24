@@ -1,3 +1,8 @@
+export type PostList = {
+  subject: string;
+  posts: Post[];
+};
+
 export type Post = {
   title: string;
   description: string;
