@@ -44,20 +44,27 @@ export default function Signup() {
     try {
       await axios.post("/api/auth/signup", data);
       toast(account.created);
+
       await axios.post("/api/auth/login", {
         email: data.email,
         password: data.password,
       });
+
       form.reset();
       router.push("/");
-    } catch (error: any) {
-      if (error.response) {
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
         toast({
           description: error.response.data.message,
           variant: "destructive",
           duration: 2000,
         });
       } else {
+        toast({
+          description: "An unexpected error occurred",
+          variant: "destructive",
+          duration: 2000,
+        });
         console.error(error);
       }
     }

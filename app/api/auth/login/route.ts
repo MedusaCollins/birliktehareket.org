@@ -1,5 +1,5 @@
 import { pbkdf2Sync } from "crypto";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/database/mongodb";
 import { HttpStatusCode } from "axios";
 import jwt from "jsonwebtoken";
@@ -11,8 +11,12 @@ const DIGEST = "sha512";
 const SECRET_KEY = process.env.JWT_SECRET_KEY;
 const TOKEN_EXPIRY = "100h";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    if (!SECRET_KEY) {
+      throw new Error("SECRET_KEY environment variable is missing");
+    }
+
     const body = await request.json();
     const client = await clientPromise;
     const db = client.db("Users");

@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { account } from "@/lib/helpers/toastNotification";
 import { useRouter } from "next/navigation";
 
@@ -39,14 +39,19 @@ export default function Login() {
       toast(account.login);
       form.reset();
       router.push("/");
-    } catch (error: any) {
-      if (error.response) {
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
         toast({
           description: error.response.data.message,
           variant: "destructive",
           duration: 2000,
         });
       } else {
+        toast({
+          description: "An unexpected error occurred",
+          variant: "destructive",
+          duration: 2000,
+        });
         console.error(error);
       }
     }
