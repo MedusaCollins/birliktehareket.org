@@ -63,6 +63,8 @@ export async function POST(request: NextRequest) {
         name: "session-token",
         value: token,
         httpOnly: true,
+        secure: true,
+        sameSite: "none",
         maxAge: 60 * 60,
         path: "/",
       });
