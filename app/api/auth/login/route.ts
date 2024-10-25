@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
     const client = await clientPromise;
+
     const db = client.db("Users");
     const collection = db.collection("accounts");
     const { email, password } = body;
@@ -68,6 +69,7 @@ export async function POST(request: NextRequest) {
         maxAge: 60 * 60,
         path: "/",
       });
+      console.log("Cookie set successfully");
     } catch (cookieError) {
       console.error("Cookie setting error:", cookieError);
       throw new Error("Failed to set cookie.");
@@ -80,7 +82,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Login Error:", error);
     return NextResponse.json(
-      { success: false, message: "Error logging in.", error: error },
+      {
+        success: false,
+        message: "Error logging in.",
+        error: error || "An unknown error occurred.",
+      },
       { status: HttpStatusCode.InternalServerError },
     );
   }
