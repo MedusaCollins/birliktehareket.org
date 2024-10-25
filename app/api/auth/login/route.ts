@@ -58,22 +58,27 @@ export async function POST(request: NextRequest) {
       expiresIn: TOKEN_EXPIRY,
     });
 
-    cookies().set({
-      name: "session-token",
-      value: token,
-      httpOnly: true,
-      maxAge: 60 * 60,
-      path: "/",
-    });
+    try {
+      cookies().set({
+        name: "session-token",
+        value: token,
+        httpOnly: true,
+        maxAge: 60 * 60,
+        path: "/",
+      });
+    } catch (cookieError) {
+      console.error("Cookie setting error:", cookieError);
+      throw new Error("Failed to set cookie.");
+    }
 
     return NextResponse.json(
       { success: true, message: "Login successful.", token },
       { status: HttpStatusCode.Ok },
     );
   } catch (error) {
-    console.error(error);
+    console.error("Login Error:", error);
     return NextResponse.json(
-      { success: false, message: "Error logging in." },
+      { success: false, message: "Error logging in.", error: error },
       { status: HttpStatusCode.InternalServerError },
     );
   }
