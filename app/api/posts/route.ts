@@ -32,6 +32,1775 @@ const fakeData: Post[] = [
     ],
   },
   {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Climate Action March",
+    description: "Join us in a march to raise awareness about climate change.",
+    organizer: "Green Earth Organization",
+    images: [
+      "https://fastly.picsum.photos/id/873/500/300.jpg?hmac=MaOLNl8Rq7sIFnpBxV3uQew2CnvIrLwwemAL0x2m3Ro",
+    ],
+    detail: {
+      date: new Date("2024-11-12"),
+      location: { start: "Central Park", end: "City Hall" },
+      minimumPeopleExpectation: 500,
+      subject: "Politika",
+    },
+    supporters: [
+      { userId: "user123", date: new Date("2024-10-01") },
+      { userId: "user456", date: new Date("2024-10-05") },
+    ],
+    updates: [
+      {
+        date: new Date("2024-10-15"),
+        message: "Route change due to roadworks.",
+        userId: "admin001",
+        images: [
+          "https://fastly.picsum.photos/id/237/500/300.jpg?hmac=xyz",
+          "https://fastly.picsum.photos/id/238/500/300.jpg?hmac=abc",
+        ],
+      },
+    ],
+  },
+  {
     title: "Equality Now Walk",
     description: "A walk for equality and human rights.",
     organizer: "Equality Now",

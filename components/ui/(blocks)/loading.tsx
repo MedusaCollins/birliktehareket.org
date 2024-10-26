@@ -7,9 +7,9 @@ const loading = ({ loading }: { loading: boolean }) => {
         {Array.from({ length: 3 }).map((_, index) => (
           <div
             key={index}
-            className="border-b-2 pb-5 px-2 max-w-[1200px] w-screen h-[346px]"
+            className="border-b-2 px-2 max-w-[1200px] w-screen h-[330px]"
           >
-            <Skeleton className="h-4 w-[100px]" />
+            <Skeleton className="h-4 w-[300px]" />
             <div className="flex overflow-hidden">
               {Array.from({ length: 4 }).map((_, index) => (
                 <div

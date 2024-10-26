@@ -7,7 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css"; // Swiper stillerini eklemeyi unutma
+import "swiper/swiper-bundle.css";
 
 export default function Overview() {
   const [posts, setPosts] = useState<PostList[]>([]);
@@ -33,7 +33,9 @@ export default function Overview() {
           Önemsediğin konular hakkında yapılmış olan yürüyüşleri keşfet
         </h1>
         {posts.length < 1 ? (
-          <Loading loading={true} />
+          <div className="pt-4">
+            <Loading loading={true} />
+          </div>
         ) : (
           <div>
             {posts.map((subject, index) => (
