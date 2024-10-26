@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/logo.svg";
@@ -13,6 +15,8 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 export default function Navbar(): JSX.Element {
   const [scrollY, setScrollY] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,21 +26,29 @@ export default function Navbar(): JSX.Element {
         setScrollY(false);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-    if (e.key === "Enter") {
-      // Router Push Here
+  useEffect(() => {
+    if (!pathname.includes("search")) {
+      setSearchTerm("");
+    }
+  }, [pathname]);
+
+  const handleSearch = (
+    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if ("value" in e.target) {
+      setSearchTerm(e.target.value);
+    }
+    if ("key" in e && e.key === "Enter" && searchTerm !== "") {
+      router.push(`/discover/search/${searchTerm}`);
     }
   };
-
-  // TODO: When it come backs to main page searchTerm should be empty
-  // TODO: With Searchbar user should be able to go to pages like about and contact
 
   return (
     <header
@@ -50,7 +62,7 @@ export default function Navbar(): JSX.Element {
               <Image
                 src={Logo}
                 alt="logo"
-                className="hover:scale-110 duration-500 dark:invert"
+                className="md:hover:scale-110 duration-500 dark:invert"
                 height={66}
                 width={66}
               />
@@ -63,16 +75,22 @@ export default function Navbar(): JSX.Element {
             placeholder="Search..."
             onChange={handleSearch}
             onKeyDown={handleSearch}
+            value={searchTerm}
           />
-          <Link href={`/discover/search/${searchTerm}`}>
-            <Button variant="ghost" className="hover:bg-transparent px-2">
-              <MagnifyingGlassIcon className="w-5 h-5" />
-            </Button>
+          <Link
+            href={`/discover/search/${searchTerm}`}
+            className={`${
+              searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
+            } flex items-center relative duration-500`}
+          >
+            <MagnifyingGlassIcon className="w-5 h-5 absolute right-3" />
           </Link>
         </div>
         <div className="space-x-6 hidden md:block">
-          <Link href={"/auth/login"}>Yürüyüş Düzenle</Link>
-          <Link href={"/auth/signup"}>
+          <Link href={"/"}>
+            <Button variant="secondary">Yürüyüş Düzenle</Button>
+          </Link>
+          <Link href={"/auth/login"}>
             <Button variant="default">Sign in</Button>
           </Link>
         </div>
@@ -88,14 +106,21 @@ export default function Navbar(): JSX.Element {
             </SheetHeader>
             <SheetHeader>
               <div className="flex items-center">
-                {/* <Image src={Logo} alt="logo" height={50} width={50} /> Maybe */}
-                <Input className="w-full" placeholder="Search..." onChange={handleSearch} />
+                <Input
+                  className="w-full"
+                  placeholder="Search..."
+                  onChange={handleSearch}
+                  value={searchTerm}
+                  tabIndex={-1}
+                />
                 <SheetClose asChild>
-                  <Link href={`/discover/search/${searchTerm}`} className="absolute right-6">
-                    {/* might need some adjustment */}
-                    <Button variant="ghost" className="hover:bg-transparent px-2">
-                      <MagnifyingGlassIcon className="w-5 h-5" />
-                    </Button>
+                  <Link
+                    href={`/discover/search/${searchTerm}`}
+                    className={`${
+                      searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
+                    } absolute right-8 duration-500`}
+                  >
+                    <MagnifyingGlassIcon className="w-5 h-5" />
                   </Link>
                 </SheetClose>
               </div>
@@ -117,11 +142,11 @@ export default function Navbar(): JSX.Element {
             </SheetClose>
             <SheetClose asChild>
               <SheetHeader>
-                <Link href="/auth/signup" className={buttonVariants({ variant: "secondary" })}>
+                <Link href="/" className={buttonVariants({ variant: "secondary" })}>
                   <span className="font-semibold">Yürüyüş Düzenle</span>
                 </Link>
               </SheetHeader>
-            </SheetClose>{" "}
+            </SheetClose>
             <SheetClose asChild>
               <SheetHeader>
                 <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
