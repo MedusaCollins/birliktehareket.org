@@ -1,6 +1,7 @@
 import { Post } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
+import { Clock, MapPin } from "lucide-react";
 
 interface PostCardProps {
   post: Post;
@@ -9,6 +10,17 @@ interface PostCardProps {
 
 function formatPeople(peopleNumber: number) {
   return peopleNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function calculateDaysLeft(targetDate: Date): number {
+  const today = new Date();
+  const target = new Date(targetDate);
+
+  const differenceInMs = target.getTime() - today.getTime();
+
+  const daysLeft = Math.ceil(differenceInMs / (1000 * 60 * 60 * 24));
+
+  return daysLeft > 0 ? daysLeft : 0;
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
@@ -20,41 +32,47 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       ? `${Math.min((currentSupporters / minimumExpectation) * 100, 100)}%`
       : "0%";
 
-  {
-    /* TODO: Change link to walk detail page and little bit of design. */
-  }
   return (
     <Link
       href="/"
-      className="flex flex-col space-y-3 hover:bg-slate-200/30 transition-all cursor-pointer p-5 rounded-md group h-fit w-[287px]"
+      className="flex flex-col space-y-3 hover:bg-gray-100/50 transition-all cursor-pointer p-4 rounded-md group h-fit w-[310px]"
     >
-      <Image
-        src={post.images[0]}
-        alt="post-image"
-        width={520}
-        height={10}
-        className="rounded-xl transition-all group-hover:scale-105"
-      />
+      <div className="relative overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300 aspect-video">
+        <Image
+          src={post.images[0]}
+          alt="post-image"
+          width={520}
+          height={10}
+          className="object-cover w-full h-full"
+        />
 
-      <div className="space-y-2">
-        <h1 className="text-lg font-semibold overflow-hidden truncate whitespace-nowrap">
-          {post.title}
-        </h1>
-
-        <h3 className="text-sm font-semibold text-slate-700 overflow-hidden truncate whitespace-nowrap">
-          {post.organizer}
-        </h3>
-
-        <div className="bg-gray-200 rounded-full">
-          <div
-            className={`bg-green-600 h-2 left-0 rounded-full`}
-            style={{ width }}
-          />
+        <div className="absolute bottom-0 left-0 w-full bg-gray-300 h-2 rounded-b-xl overflow-hidden">
+          <div className="bg-green-600 h-full rounded-xl transition-all" style={{ width }} />
         </div>
+      </div>
 
-        <p className="text-sm text-slate-700 overflow-hidden truncate whitespace-nowrap">
+      <div className="space-y-3">
+        <h1 className="text-lg font-semibold text-slate-800 truncate">{post.title}</h1>
+
+        <h3 className="text-sm font-medium text-slate-600 truncate">{post.organizer}</h3>
+
+        <p className="text-xs text-slate-600">
           {`${formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşü destekliyor!`}
         </p>
+
+        <div className="flex justify-between items-center text-xs text-slate-500 mt-2">
+          <div className="flex items-center space-x-1">
+            <MapPin className="w-4 h-4 text-slate-500" />
+            <span className="truncate">
+              {post.detail.location.start} - {post.detail.location.end}
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-1">
+            <Clock className="w-4 h-4 text-slate-500" />
+            <span>{`${calculateDaysLeft(post.detail.date)} days left`}</span>
+          </div>
+        </div>
       </div>
     </Link>
   );
