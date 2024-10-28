@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/database/mongodb";
 import { HttpStatusCode } from "axios";
 import { Resend } from "resend";
+import PassResetTemplate from "@/emails/PassResetTemplate";
+import { render } from "@react-email/render";
 
 const CODE_EXPIRY_TIME = 15 * 60 * 1000;
 
@@ -37,15 +39,17 @@ export async function POST(request: NextRequest) {
       { $set: { resetCode: verificationCode, resetCodeExpiry: expiryTime } },
     );
 
-    // TODO: Email Sending need to be rate limited and need to a email template.
+    // TODO: Email Sending need to be rate limited.
 
     const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const resetTemplate = await render(PassResetTemplate({verificationCode:verificationCode}));
 
     await resend.emails.send({
       from: "Birlikte Hareket <noreply@birliktehareket.org>",
       to: [`${email}`],
       subject: "Birlikte Hareket | Password Reset Code",
-      text: "Your password reset code is: " + verificationCode,
+      html: resetTemplate,
     });
 
     return NextResponse.json(
