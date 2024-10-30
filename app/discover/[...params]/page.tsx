@@ -3,9 +3,9 @@
 import PostList from "@/components/sections/landing/postList";
 
 export default function DynamicPage({
-  params,
+    params,
 }: {
-  params: { title?: string; category?: string };
+    params: { title?: string; category?: string };
 }) {
-  return <PostList params={params} />;
+    return <PostList params={params} />;
 }

@@ -4,6 +4,7 @@ export type PostList = {
 };
 
 export type Post = {
+  id: number;
   title: string;
   description: string;
   organizer: string;

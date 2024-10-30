@@ -32,7 +32,6 @@ export default function PostList({ params }: PostListProps) {
       setLoading(false);
     }
 
-    console.log("deneem");
     getPosts();
   }, [searchTerm, params]);
 
@@ -46,7 +45,6 @@ export default function PostList({ params }: PostListProps) {
       );
       setPage(page + 1);
       setPosts((posts) => [...posts, ...response.data.data]);
-      console.log(`/api/posts?page=${page + 1}&limit=9&${queryParam}`);
     }
   }
 
