@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/logo.svg";
+import avatar from "@/public/default_avatar.svg";
 import { Button, buttonVariants } from "./ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
@@ -14,20 +16,18 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 export default function Navbar(): JSX.Element {
   const [scrollY, setScrollY] = useState(false);
+  const { isLoggedIn, logout } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setScrollY(true);
-      } else {
-        setScrollY(false);
-      }
+      setScrollY(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -86,14 +86,25 @@ export default function Navbar(): JSX.Element {
             <MagnifyingGlassIcon className="w-5 h-5 absolute right-3" />
           </Link>
         </div>
-        <div className="space-x-6 hidden md:block">
-          <Link href={"/"}>
-            <Button variant="secondary">Yürüyüş Düzenle</Button>
-          </Link>
-          <Link href={"/auth/login"}>
-            <Button variant="default">Sign in</Button>
-          </Link>
-        </div>
+        {isLoggedIn ? (
+          <div className="space-x-6 hidden md:flex items-center">
+            <Link href={"/"}>
+              <Button variant="default">Yürüyüş Düzenle</Button>
+            </Link>
+            <Button variant={null}>
+              <Image src={avatar} alt="avatar" height={36} width={36} />
+            </Button>
+          </div>
+        ) : (
+          <div className="space-x-6 hidden md:block">
+            <Link href={"/"}>
+              <Button variant="secondary">Yürüyüş Düzenle</Button>
+            </Link>
+            <Link href={"/auth/login"}>
+              <Button variant="default">Sign in</Button>
+            </Link>
+          </div>
+        )}
         <Sheet>
           <SheetTrigger asChild>
             <Button variant={"ghost"} className="md:hidden flex">
@@ -101,9 +112,16 @@ export default function Navbar(): JSX.Element {
             </Button>
           </SheetTrigger>
           <SheetContent className="flex flex-col" side={"right"}>
-            <SheetHeader>
-              <Image src={Logo} alt="logo" height={60} width={60} />
-            </SheetHeader>
+            <div className="flex items-center justify-between pt-8 ">
+              <SheetHeader>
+                <Image src={Logo} alt="logo" height={60} width={60} />
+              </SheetHeader>
+              {isLoggedIn ? (
+                <Link href={"/profile"}>
+                  <Image src={avatar} alt="logo" height={40} width={40} />
+                </Link>
+              ) : null}
+            </div>
             <SheetHeader>
               <div className="flex items-center">
                 <Input
@@ -142,16 +160,25 @@ export default function Navbar(): JSX.Element {
             </SheetClose>
             <SheetClose asChild>
               <SheetHeader>
-                <Link href="/" className={buttonVariants({ variant: "secondary" })}>
+                <Link
+                  href="/"
+                  className={buttonVariants({ variant: isLoggedIn ? "default" : "secondary" })}
+                >
                   <span className="font-semibold">Yürüyüş Düzenle</span>
                 </Link>
               </SheetHeader>
             </SheetClose>
             <SheetClose asChild>
               <SheetHeader>
-                <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
-                  <span className="font-semibold">Sign in</span>
-                </Link>
+                {isLoggedIn ? (
+                  <Button variant="destructive" onClick={logout}>
+                    <span className="font-semibold">Logout</span>
+                  </Button>
+                ) : (
+                  <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
+                    <span className="font-semibold">Sign in</span>
+                  </Link>
+                )}
               </SheetHeader>
             </SheetClose>
           </SheetContent>

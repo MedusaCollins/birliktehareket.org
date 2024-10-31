@@ -19,10 +19,13 @@ import { useForm } from "react-hook-form";
 import axios, { AxiosError } from "axios";
 import { account } from "@/lib/helpers/toastNotification";
 import { useRouter } from "next/navigation";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
 
 type loginFormData = z.infer<typeof loginSchema>;
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
   const form = useForm<loginFormData>({
@@ -38,7 +41,7 @@ export default function Login() {
       await axios.post("/api/auth/login", data);
       toast(account.login);
       form.reset();
-      router.push("/");
+      window.location.href = "/";
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         toast({
@@ -57,6 +60,8 @@ export default function Login() {
     }
   }
 
+  const handleShowPass = () => setShowPassword(!showPassword);
+
   return (
     <div className="w-full lg:grid h-screen lg:grid-cols-2">
       <div className="flex items-center justify-center py-12">
@@ -68,7 +73,7 @@ export default function Login() {
             </p>
           </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 relative">
               <FormField
                 control={form.control}
                 name="email"
@@ -76,11 +81,7 @@ export default function Login() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="m@example.com"
-                        {...field}
-                      />
+                      <Input type="email" placeholder="m@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -92,25 +93,32 @@ export default function Login() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between">
-                      <FormLabel>Password</FormLabel>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input type={showPassword ? "text" : "password"} {...field} />
+                    </FormControl>
+                    <div onClick={handleShowPass} className="absolute top-1/2 right-3">
+                      {showPassword ? (
+                        <EyeOpenIcon className="w-5 h-5" />
+                      ) : (
+                        <EyeClosedIcon className="w-5 h-5" />
+                      )}
+                    </div>
+                    <div className="flex justify-end">
                       <Link
                         href="/auth/forgot-password"
-                        className="ml-auto inline-block text-sm underline"
+                        className="ml-auto inline-block text-sm underline select-none"
                       >
                         Forgot your password?
                       </Link>
                     </div>
-                    <FormControl>
-                      <Input type="password" {...field} />
-                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
               <Button type="submit" className="w-full">
-                login
+                Login
               </Button>
             </form>
           </Form>
@@ -124,11 +132,11 @@ export default function Login() {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          src="/placeholder.svg"
+          src={""}
           alt="Image"
           width="1920"
           height="1080"
-          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="h-full w-full object-cover aspect-square  dark:brightness-[0.2] dark:grayscale"
         />
       </div>
     </div>
