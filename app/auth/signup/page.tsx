@@ -1,13 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -25,9 +19,12 @@ import axios from "axios";
 import { account } from "@/lib/helpers/toastNotification";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
 type SignupFormData = z.infer<typeof signupSchema>;
 
 export default function Signup() {
+  const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -70,19 +67,19 @@ export default function Signup() {
     }
   }
 
+  const handleShowPass = () => setShowPassword(!showPassword);
+
   return (
     <div className="flex justify-center items-center w-full h-screen">
-      <Card className="mx-auto max-w-sm">
+      <Card className="mx-auto max-w-md md:w-full">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
-          <CardDescription>
-            Enter your information to create an account
-          </CardDescription>
+          <CardDescription>Enter your information to create an account</CardDescription>
         </CardHeader>
 
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 relative">
               <FormField
                 control={form.control}
                 name="username"
@@ -96,7 +93,6 @@ export default function Signup() {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="email"
@@ -104,17 +100,12 @@ export default function Signup() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="m@example.com"
-                        {...field}
-                      />
+                      <Input type="email" placeholder="m@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="password"
@@ -123,11 +114,18 @@ export default function Signup() {
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
                         {...field}
                       />
                     </FormControl>
+                    <div onClick={handleShowPass} className="absolute bottom-[21%] right-3">
+                      {showPassword ? (
+                        <EyeOpenIcon className="w-5 h-5" />
+                      ) : (
+                        <EyeClosedIcon className="w-5 h-5" />
+                      )}
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
