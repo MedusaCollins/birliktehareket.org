@@ -29,7 +29,7 @@ export default function Login() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn } = useAuth();
   const form = useForm<loginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -70,9 +70,7 @@ export default function Login() {
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">
-              Login {isLoggedIn ? "true" : "false"}
-            </h1>
+            <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
               Enter your email below to login to your account
             </p>
