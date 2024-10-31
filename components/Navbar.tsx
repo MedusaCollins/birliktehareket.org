@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
@@ -9,7 +9,13 @@ import Image from "next/image";
 import Logo from "../public/logo.svg";
 import avatar from "@/public/default_avatar.svg";
 import { Button, buttonVariants } from "./ui/button";
-import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./ui/sheet";
 import { Menu } from "lucide-react";
 import { Input } from "./ui/input";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
@@ -40,7 +46,9 @@ export default function Navbar(): JSX.Element {
   }, [pathname]);
 
   const handleSearch = (
-    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.KeyboardEvent<HTMLInputElement>,
   ) => {
     if ("value" in e.target) {
       setSearchTerm(e.target.value);
@@ -79,9 +87,8 @@ export default function Navbar(): JSX.Element {
           />
           <Link
             href={`/discover/search/${searchTerm}`}
-            className={`${
-              searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
-            } flex items-center relative duration-500`}
+            className={`${searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
+              } flex items-center relative duration-500`}
           >
             <MagnifyingGlassIcon className="w-5 h-5 absolute right-3" />
           </Link>
@@ -134,9 +141,10 @@ export default function Navbar(): JSX.Element {
                 <SheetClose asChild>
                   <Link
                     href={`/discover/search/${searchTerm}`}
-                    className={`${
-                      searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
-                    } absolute right-8 duration-500`}
+                    className={`${searchTerm
+                        ? "text-black"
+                        : "text-gray-400 pointer-events-none"
+                      } absolute right-8 duration-500`}
                   >
                     <MagnifyingGlassIcon className="w-5 h-5" />
                   </Link>
@@ -149,12 +157,18 @@ export default function Navbar(): JSX.Element {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link href="/about" className={buttonVariants({ variant: "ghost" })}>
+              <Link
+                href="/about"
+                className={buttonVariants({ variant: "ghost" })}
+              >
                 About
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link href="/contact" className={buttonVariants({ variant: "ghost" })}>
+              <Link
+                href="/contact"
+                className={buttonVariants({ variant: "ghost" })}
+              >
                 Contact
               </Link>
             </SheetClose>
@@ -162,7 +176,9 @@ export default function Navbar(): JSX.Element {
               <SheetHeader>
                 <Link
                   href="/"
-                  className={buttonVariants({ variant: isLoggedIn ? "default" : "secondary" })}
+                  className={buttonVariants({
+                    variant: isLoggedIn ? "default" : "secondary",
+                  })}
                 >
                   <span className="font-semibold">Yürüyüş Düzenle</span>
                 </Link>
@@ -175,7 +191,10 @@ export default function Navbar(): JSX.Element {
                     <span className="font-semibold">Logout</span>
                   </Button>
                 ) : (
-                  <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
+                  <Link
+                    href="/auth/login"
+                    className={buttonVariants({ variant: "default" })}
+                  >
                     <span className="font-semibold">Sign in</span>
                   </Link>
                 )}
