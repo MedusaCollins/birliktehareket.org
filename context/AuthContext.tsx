@@ -1,10 +1,17 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import axios from "axios";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface AuthContextType {
   isLoggedIn: boolean;
-  checkAuthStatus: () => Promise<void>;
+  setIsLoggedIn: (value: boolean) => void; // Add this line
   logout: () => Promise<void>;
 }
 
@@ -14,10 +21,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const checkAuthStatus = async () => {
-    const res = await fetch("/api/auth/check-token", { method: "GET", credentials: "include" });
-    const data = await res.json();
-    console.log(data.isLoggedIn);
-    setIsLoggedIn(data.isLoggedIn);
+    const res = await axios.get("/api/auth/check-token");
+    setIsLoggedIn(res.data.isLoggedIn);
   };
 
   const logout = async () => {
@@ -30,7 +35,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, checkAuthStatus, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, logout }}>
       {children}
     </AuthContext.Provider>
   );
