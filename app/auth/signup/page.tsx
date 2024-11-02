@@ -21,12 +21,14 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 type SignupFormData = z.infer<typeof signupSchema>;
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
+  const { setIsLoggedIn } = useAuth();
 
   const form = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
@@ -48,6 +50,7 @@ export default function Signup() {
       });
 
       form.reset();
+      setIsLoggedIn(true);
       router.push("/");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -79,7 +82,7 @@ export default function Signup() {
 
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 relative">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="username"
@@ -111,20 +114,22 @@ export default function Signup() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Enter your password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <div onClick={handleShowPass} className="absolute bottom-[21%] right-3">
-                      {showPassword ? (
-                        <EyeOpenIcon className="w-5 h-5" />
-                      ) : (
-                        <EyeClosedIcon className="w-5 h-5" />
-                      )}
+                    <div className="relative">
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Enter your password"
+                          {...field}
+                        />
+                      </FormControl>
+                      <div onClick={handleShowPass} className="absolute bottom-2 right-3">
+                        {showPassword ? (
+                          <EyeOpenIcon className="w-5 h-5" />
+                        ) : (
+                          <EyeClosedIcon className="w-5 h-5" />
+                        )}
+                      </div>
                     </div>
                     <FormMessage />
                   </FormItem>
