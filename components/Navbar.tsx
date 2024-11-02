@@ -9,16 +9,17 @@ import Image from "next/image";
 import Logo from "../public/logo.svg";
 import avatar from "@/public/default_avatar.svg";
 import { Button, buttonVariants } from "./ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from "./ui/sheet";
-import { Menu } from "lucide-react";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
+import { LogOutIcon, Menu, Settings, UserIcon, UserCheckIcon, FlagIcon } from "lucide-react";
 import { Input } from "./ui/input";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 
 export default function Navbar(): JSX.Element {
   const [scrollY, setScrollY] = useState(false);
@@ -46,9 +47,7 @@ export default function Navbar(): JSX.Element {
   }, [pathname]);
 
   const handleSearch = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
     if ("value" in e.target) {
       setSearchTerm(e.target.value);
@@ -87,8 +86,9 @@ export default function Navbar(): JSX.Element {
           />
           <Link
             href={`/discover/search/${searchTerm}`}
-            className={`${searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
-              } flex items-center relative duration-500`}
+            className={`${
+              searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
+            } flex items-center relative duration-500`}
           >
             <MagnifyingGlassIcon className="w-5 h-5 absolute right-3" />
           </Link>
@@ -98,9 +98,40 @@ export default function Navbar(): JSX.Element {
             <Link href={"/"}>
               <Button variant="default">Yürüyüş Düzenle</Button>
             </Link>
-            <Button variant={null}>
-              <Image src={avatar} alt="avatar" height={36} width={36} />
-            </Button>
+            <DropdownMenu>
+              <div className="flex items-center gap-2">
+                <DropdownMenuTrigger asChild>
+                  <Image src={avatar} alt="avatar" height={36} width={36} />
+                </DropdownMenuTrigger>
+                <DropdownMenuLabel className="text-sm lg:block hidden">User.name</DropdownMenuLabel>
+                {/* The username section can be removed */}
+              </div>
+              <DropdownMenuContent className="w-52 mt-3 p-2 flex flex-col ">
+                <DropdownMenuItem>
+                  <Link href="/profile" className="flex items-center">
+                    <UserIcon className="w-4 h-4 mr-2" /> Profile
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/profile/attendedwalk" className="flex items-center">
+                    <UserCheckIcon className="w-4 h-4 mr-2" /> Attended Walks
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/profile/organizedwalk" className="flex items-center">
+                    <FlagIcon className="w-4 h-4 mr-2" /> Organized Walks
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/profile/settings" className="flex items-center">
+                    <Settings className="w-4 h-4 mr-2" /> Settings
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout}>
+                  <LogOutIcon className="w-4 h-4 mr-2" /> Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         ) : (
           <div className="space-x-6 hidden md:block">
@@ -141,10 +172,9 @@ export default function Navbar(): JSX.Element {
                 <SheetClose asChild>
                   <Link
                     href={`/discover/search/${searchTerm}`}
-                    className={`${searchTerm
-                        ? "text-black"
-                        : "text-gray-400 pointer-events-none"
-                      } absolute right-8 duration-500`}
+                    className={`${
+                      searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
+                    } absolute right-8 duration-500`}
                   >
                     <MagnifyingGlassIcon className="w-5 h-5" />
                   </Link>
@@ -157,18 +187,12 @@ export default function Navbar(): JSX.Element {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link
-                href="/about"
-                className={buttonVariants({ variant: "ghost" })}
-              >
+              <Link href="/about" className={buttonVariants({ variant: "ghost" })}>
                 About
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link
-                href="/contact"
-                className={buttonVariants({ variant: "ghost" })}
-              >
+              <Link href="/contact" className={buttonVariants({ variant: "ghost" })}>
                 Contact
               </Link>
             </SheetClose>
@@ -191,10 +215,7 @@ export default function Navbar(): JSX.Element {
                     <span className="font-semibold">Logout</span>
                   </Button>
                 ) : (
-                  <Link
-                    href="/auth/login"
-                    className={buttonVariants({ variant: "default" })}
-                  >
+                  <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
                     <span className="font-semibold">Sign in</span>
                   </Link>
                 )}
