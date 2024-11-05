@@ -46,10 +46,16 @@ export async function POST(request: NextRequest) {
     ).toString("hex");
 
     const newAccount = {
+      image: "",
       username,
       email,
       password: `${salt}:${hashedPassword}`,
       createdAt: new Date(),
+      walkDetails: {
+        ownWalk: [],
+        supportedWalk: [],
+        savedWalk: [],
+      },
     };
 
     const result = await collection.insertOne(newAccount);
