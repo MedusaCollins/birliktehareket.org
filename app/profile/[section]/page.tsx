@@ -4,71 +4,50 @@ import DynamicComponent from "@/components/sections/userProfile/DynamicComp";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function UserPage() {
   const pathname = usePathname();
-  const [user, setUser] = useState<any>(null);
-  const [savedWalks, setSavedWalks] = useState<any>(null);
-  const [organizedWalks, setOrganizedWalks] = useState<any>(null);
-  const [attendedWalks, setAttendedWalks] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await fetch("/api/user", {
-        method: "POST",
-        body: JSON.stringify({ userId: "672b7644749729e550213729" }),
-      });
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      const data = await response.json();
-      const walkInfo = data.userInfo.walkDetails;
-      setUser(data.userInfo);
-      setSavedWalks(walkInfo.savedWalk);
-      setOrganizedWalks(walkInfo.ownWalk);
-      setAttendedWalks(walkInfo.supportedWalk);
-      setLoading(false);
-    };
-    fetchUser();
-  }, []);
-
+  const { userInfo } = useAuth();
   const isActive = (path: string) => pathname === path;
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (!userInfo) return <div>Loading...</div>;
 
   return (
     <div className="flex flex-col items-center justify-center p-6 w-full h-full bg-gray-100">
       <div className="flex flex-col items-center w-full max-w-7xl bg-white shadow-lg rounded-lg p-8 pb-0 space-y-6">
-        <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="flex p-1 flex-col items-center justify-center space-y-4">
           <Avatar className="w-32 h-32 rounded-full border-4 ">
-            <AvatarImage src={user.image} />
+            <AvatarImage src={userInfo.image} />
             <AvatarFallback className="text-5xl">
-              {user.username.slice(0, 2).toUpperCase()}
+              {userInfo.username.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <h1 className="text-4xl font-semibold">{user.username}</h1>
+          <h1 className="text-4xl font-semibold">{userInfo.username}</h1>
           <div className="flex space-x-4">
-            <span className="text-sm text-gray-500">{user.createdAt.slice(0, 10)}</span>
+            <span className="text-sm text-gray-500">
+              Joined {userInfo.createdAt.slice(0, 10).split("-").reverse().join(".")}
+            </span>
           </div>
-          <p className="text-sm text-gray-600 text-center max-w-md">Add Description Here!</p>
         </div>
 
         <div className="flex justify-around w-full text-center">
           <div className="flex flex-col">
-            <span className="text-2xl font-bold text-emerald-600">{attendedWalks.length}</span>
+            <span className="text-2xl font-bold text-emerald-600">
+              {userInfo.walkDetails.supportedWalk.length}
+            </span>
             <span className="text-sm text-gray-500">Attended Walks</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-2xl font-bold text-emerald-600">{organizedWalks.length}</span>
+            <span className="text-2xl font-bold text-emerald-600">
+              {userInfo.walkDetails.ownWalk.length}
+            </span>
             <span className="text-sm text-gray-500">Organized Walks</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-2xl font-bold text-emerald-600">{savedWalks.length}</span>
+            <span className="text-2xl font-bold text-emerald-600">
+              {userInfo.walkDetails.savedWalk.length}
+            </span>
             <span className="text-sm text-gray-500">Saved Walks</span>
           </div>
         </div>
