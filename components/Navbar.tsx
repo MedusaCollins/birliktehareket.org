@@ -7,23 +7,22 @@ import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/logo.svg";
-import avatar from "@/public/default_avatar.svg";
 import { Button, buttonVariants } from "./ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import { LogOutIcon, Menu, Settings, UserIcon, UserCheckIcon, FlagIcon } from "lucide-react";
 import { Input } from "./ui/input";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 
 export default function Navbar(): JSX.Element {
   const [scrollY, setScrollY] = useState(false);
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, userInfo, logout } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
   const pathname = usePathname();
@@ -57,10 +56,20 @@ export default function Navbar(): JSX.Element {
     }
   };
 
+  if (isLoggedIn && !userInfo) {
+    console.log(isLoggedIn);
+    console.log(userInfo);
+    return (
+      <div className="w-full h-16 flex justify-center items-center">
+        <div className="w-5 h-5 border-4 border-gray-200 rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <header
       className={`w-full flex fixed px-6 items-center justify-center transition-all z-50
-      ${scrollY ? "shadow-md backdrop-blur-sm bg-white" : "bg-gray-100"}`}
+      ${scrollY ? "shadow-md backdrop-blur-sm bg-white" : "bg-gray-200"}`}
     >
       <nav className="mx-auto max-w-7xl w-full items-center justify-between flex">
         <div className="w-1/6">
@@ -101,24 +110,27 @@ export default function Navbar(): JSX.Element {
             <DropdownMenu>
               <div className="flex items-center gap-2">
                 <DropdownMenuTrigger asChild>
-                  <Image src={avatar} alt="avatar" height={36} width={36} />
+                  <Avatar className="w-10 h-10">
+                    <AvatarImage src={userInfo.image} />
+                    <AvatarFallback className="text-sm font-semibold">
+                      {userInfo.username.slice(0, 2).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuLabel className="text-sm lg:block hidden">User.name</DropdownMenuLabel>
-                {/* The username section can be removed */}
               </div>
               <DropdownMenuContent className="w-52 mt-3 p-2 flex flex-col ">
                 <DropdownMenuItem>
-                  <Link href="/profile" className="flex items-center">
+                  <Link href="/profile/about" className="flex items-center">
                     <UserIcon className="w-4 h-4 mr-2" /> Profile
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/profile/attendedwalk" className="flex items-center">
+                  <Link href="/profile/attendedwalks" className="flex items-center">
                     <UserCheckIcon className="w-4 h-4 mr-2" /> Attended Walks
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/profile/organizedwalk" className="flex items-center">
+                  <Link href="/profile/organizedwalks" className="flex items-center">
                     <FlagIcon className="w-4 h-4 mr-2" /> Organized Walks
                   </Link>
                 </DropdownMenuItem>
@@ -156,7 +168,12 @@ export default function Navbar(): JSX.Element {
               </SheetHeader>
               {isLoggedIn ? (
                 <Link href={"/profile"}>
-                  <Image src={avatar} alt="logo" height={40} width={40} />
+                  <Avatar className="w-10 h-10">
+                    <AvatarImage src={userInfo.image} />
+                    <AvatarFallback className="text-sm font-semibold">
+                      {userInfo.username.slice(0, 2).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
                 </Link>
               ) : null}
             </div>

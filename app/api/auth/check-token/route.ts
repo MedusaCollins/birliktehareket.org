@@ -13,14 +13,17 @@ export async function GET() {
   }
 
   try {
-    const { email } = jwt.verify(token.value, SECRET_KEY) as { email: string };
+    const { email, id } = jwt.verify(token.value, SECRET_KEY) as {
+      email: string;
+      id: string;
+    };
 
     const verifyEmail = await getUserEmail(email);
     if (!verifyEmail) {
       return NextResponse.json({ isLoggedIn: false });
     }
 
-    return NextResponse.json({ isLoggedIn: true });
+    return NextResponse.json({ isLoggedIn: true, userId: id });
   } catch (e) {
     return NextResponse.json({
       isLoggedIn: false,
