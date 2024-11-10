@@ -57,8 +57,6 @@ export default function Navbar(): JSX.Element {
   };
 
   if (isLoggedIn && !userInfo) {
-    console.log(isLoggedIn);
-    console.log(userInfo);
     return (
       <div className="w-full h-16 flex justify-center items-center">
         <div className="w-5 h-5 border-4 border-gray-200 rounded-full animate-spin" />
@@ -111,9 +109,9 @@ export default function Navbar(): JSX.Element {
               <div className="flex items-center gap-2">
                 <DropdownMenuTrigger asChild>
                   <Avatar className="w-10 h-10">
-                    <AvatarImage src={userInfo.image} />
+                    <AvatarImage src={userInfo?.image} />
                     <AvatarFallback className="text-sm font-semibold">
-                      {userInfo.username.slice(0, 2).toUpperCase()}
+                      {userInfo?.username.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
@@ -169,9 +167,9 @@ export default function Navbar(): JSX.Element {
               {isLoggedIn ? (
                 <Link href={"/profile"}>
                   <Avatar className="w-10 h-10">
-                    <AvatarImage src={userInfo.image} />
+                    <AvatarImage src={userInfo?.image} />
                     <AvatarFallback className="text-sm font-semibold">
-                      {userInfo.username.slice(0, 2).toUpperCase()}
+                      {userInfo?.username.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                 </Link>
