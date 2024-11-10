@@ -5,18 +5,50 @@ import formatDate from "@/lib/helpers/formatDate";
 import formatPeople from "@/lib/helpers/formatPeople";
 import { Post } from "@/lib/types";
 import { Share, Bookmark } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { useEffect, useState } from "react";
 
 export default function InfoPanel({ post }: { post: Post }) {
   {
     /* TODO: Center area is so empty, add some content here */
   }
+  const [isSaved, setIsSaved] = useState(false);
+  const [isAttended, setIsAttended] = useState(false);
+  const { saveWalk, attendWalk, userInfo } = useAuth();
+
+  useEffect(() => {
+    if (userInfo && userInfo.walkDetails.savedWalk.includes(post.id)) {
+      setIsSaved(true);
+    }
+    if (userInfo && userInfo.walkDetails.supportedWalk.includes(post.id)) {
+      setIsAttended(true);
+    }
+  }, [userInfo, post.id]);
+
+  const handleSave = async () => {
+    try {
+      await saveWalk(post.id);
+      setIsSaved(!isSaved);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleAttend = async () => {
+    try {
+      await attendWalk(post.id);
+      setIsAttended(!isAttended);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <div className="lg:col-span-1 col-span-3 w-full h-[460px] p-5 rounded-md shadow-xl space-y-2 flex flex-col justify-between">
       <div>
         <ProgressBar post={post} basic={true} />
         <p className="text-lg font-semibold text-slate-700 overflow-hidden truncate whitespace-nowrap">
-          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe
-          katılıyor!
+          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe katılıyor!
         </p>
         <h3 className="text-sm text-slate-700 overflow-hidden truncate whitespace-nowrap">
           <span>Hedeflenen kişi sayısı: </span>
@@ -27,33 +59,35 @@ export default function InfoPanel({ post }: { post: Post }) {
       </div>
       <div className="space-y-4">
         {/* TODO: Add functionality to join, save and share buttons */}
-        <Button className="w-full text-lg" size="lg">
-          Bu yürüyüşe katıl
+        <Button
+          className="w-full text-lg"
+          variant={isAttended ? "destructive" : "default"}
+          size="lg"
+          onClick={handleAttend}
+        >
+          {isAttended ? "Bu yürüyüşden ayrıl" : "Bu yürüyüşe katıl"}
         </Button>
         <div className="flex justify-between">
           <Button
             className="text-sm text-slate-600 flex gap-1"
             variant="outline"
             size="sm"
+            onClick={handleSave}
           >
-            <Bookmark className="w-4 h-4 text-slate-500" />
-            Sonra hatırlat
+            <Bookmark className={`w-4 h-4 text-slate-500 ${isSaved ? "fill-slate-500" : ""}`} />
+            {isSaved ? "Kaydedildi" : "Kaydet"}
           </Button>
-          <Button
-            className="text-sm text-slate-600 flex gap-1"
-            variant="outline"
-            size="sm"
-          >
+          <Button className="text-sm text-slate-600 flex gap-1" variant="outline" size="sm">
             <Share className="w-4 h-4 text-slate-500" />
             Yürüyüşü paylaş
           </Button>
         </div>
 
         <p className="text-sm text-slate-500 overflow-hidden">
-          Bu yürüyüş,{" "}
-          <span className="text-slate-800">{formatDate(post.detail.date)}</span>{" "}
-          (
-          <span className="text-slate-700 italic">{`${calculateDaysLeft(post.detail.date)} gün kaldı`}</span>
+          Bu yürüyüş, <span className="text-slate-800">{formatDate(post.detail.date)}</span> (
+          <span className="text-slate-700 italic">{`${calculateDaysLeft(
+            post.detail.date
+          )} gün kaldı`}</span>
           ) tarihinde hedef katılım sayısına ulaşılırsa yapılacak.
         </p>
       </div>
