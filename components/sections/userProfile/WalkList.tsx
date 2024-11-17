@@ -32,7 +32,9 @@ const WalkList = ({ walkIds, title }: WalkListProps) => {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
-      <h3 className="text-2xl font-semibold mb-4">{title}</h3>
+      <div className="flex flex-row justify-between mb-4">
+        <h3 className="text-2xl font-semibold">{title}</h3>
+      </div>
       {displayedPosts.length > 0 ? (
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 place-items-center grid-cols-1 gap-6">
           {displayedPosts.map((post) => (

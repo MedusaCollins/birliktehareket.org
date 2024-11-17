@@ -7,6 +7,7 @@ import { Post } from "@/lib/types";
 import { Share, Bookmark } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function InfoPanel({ post }: { post: Post }) {
   {
@@ -15,6 +16,7 @@ export default function InfoPanel({ post }: { post: Post }) {
   const [isSaved, setIsSaved] = useState(false);
   const [isAttended, setIsAttended] = useState(false);
   const { saveWalk, attendWalk, userInfo } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (userInfo && userInfo.walkDetails.savedWalk.includes(post.id)) {
@@ -26,20 +28,32 @@ export default function InfoPanel({ post }: { post: Post }) {
   }, [userInfo, post.id]);
 
   const handleSave = async () => {
-    try {
-      await saveWalk(post.id);
-      setIsSaved(!isSaved);
-    } catch (e) {
-      console.error(e);
+    await saveWalk(post.id);
+    const isPostSaved = userInfo?.walkDetails.savedWalk.includes(post.id) ?? false;
+    setIsSaved(isPostSaved);
+
+    if (!userInfo) {
+      toast({
+        title: "Oops!",
+        description: "You must be logged in to save a walk.",
+        variant: "destructive",
+        duration: 2000,
+      });
     }
   };
 
   const handleAttend = async () => {
-    try {
-      await attendWalk(post.id);
-      setIsAttended(!isAttended);
-    } catch (e) {
-      console.error(e);
+    await attendWalk(post.id);
+    const isPostAttended = userInfo?.walkDetails.supportedWalk.includes(post.id) ?? false;
+    setIsAttended(isPostAttended);
+
+    if (!userInfo) {
+      toast({
+        title: "Oops!",
+        description: "You must be logged in to join a walk.",
+        variant: "destructive",
+        duration: 2000,
+      });
     }
   };
 
@@ -58,7 +72,7 @@ export default function InfoPanel({ post }: { post: Post }) {
         </h3>
       </div>
       <div className="space-y-4">
-        {/* TODO: Add functionality to join, save and share buttons */}
+        {/* TODO: Add functionality to share button */}
         <Button
           className="w-full text-lg"
           variant={isAttended ? "destructive" : "default"}

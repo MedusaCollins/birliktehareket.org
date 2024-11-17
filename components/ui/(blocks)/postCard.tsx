@@ -29,17 +29,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       </div>
 
       <div className="space-y-3">
-        <h1 className="text-lg font-semibold text-slate-800 truncate">
-          {post.title}
-        </h1>
+        <h1 className="text-lg font-semibold text-slate-800 truncate">{post.title}</h1>
 
-        <h3 className="text-sm font-medium text-slate-600 truncate">
-          {post.organizer}
-        </h3>
+        <h3 className="text-sm font-medium text-slate-600 truncate">{post.organizer}</h3>
 
         <p className="text-xs text-slate-600">
-          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşü
-          katılıyor!
+          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe katılıyor!
         </p>
 
         <div className="flex justify-between items-center text-xs text-slate-500 mt-2">

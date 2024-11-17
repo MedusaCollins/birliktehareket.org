@@ -29,7 +29,7 @@ export default function Login() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
-  const { setIsLoggedIn } = useAuth();
+  const { checkAuthStatus } = useAuth();
   const form = useForm<loginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -43,7 +43,7 @@ export default function Login() {
       await axios.post("/api/auth/login", data);
       toast(account.login);
       form.reset();
-      setIsLoggedIn(true);
+      checkAuthStatus();
       router.push("/");
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
@@ -76,10 +76,7 @@ export default function Login() {
             </p>
           </div>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 relative"
-            >
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 relative">
               <FormField
                 control={form.control}
                 name="email"
@@ -87,11 +84,7 @@ export default function Login() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="m@example.com"
-                        {...field}
-                      />
+                      <Input type="email" placeholder="m@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -105,15 +98,9 @@ export default function Login() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        type={showPassword ? "text" : "password"}
-                        {...field}
-                      />
+                      <Input type={showPassword ? "text" : "password"} {...field} />
                     </FormControl>
-                    <div
-                      onClick={handleShowPass}
-                      className="absolute top-1/2 right-3"
-                    >
+                    <div onClick={handleShowPass} className="absolute top-1/2 right-3">
                       {showPassword ? (
                         <EyeOpenIcon className="w-5 h-5" />
                       ) : (
