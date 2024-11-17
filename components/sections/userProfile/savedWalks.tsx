@@ -1,14 +1,20 @@
 import WalkList from "./WalkList";
 import { useAuth } from "@/context/AuthContext";
+import { useParams } from "next/navigation";
 
 export default function SavedWalks(): JSX.Element {
-  const { userInfo } = useAuth();
+  const { id } = useParams();
+  const { profileData, userInfo } = useAuth();
 
-  if (!userInfo) return <div></div>;
+  const isOwnProfile = userInfo?.id === id;
+
+  const displayData = isOwnProfile ? userInfo : profileData;
+
+  if (!displayData) return <div></div>;
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <WalkList walkIds={userInfo.walkDetails.savedWalk} title="Saved Walks" />
+      <WalkList walkIds={displayData.walkDetails.savedWalk} title="Saved Walks" />
     </div>
   );
 }

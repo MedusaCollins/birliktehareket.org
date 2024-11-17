@@ -109,7 +109,7 @@ export default function Navbar(): JSX.Element {
               <div className="flex items-center gap-2">
                 <DropdownMenuTrigger asChild>
                   <Avatar className="w-10 h-10">
-                    <AvatarImage src={userInfo?.image} />
+                    <AvatarImage src={userInfo?.image} className="object-cover" />
                     <AvatarFallback className="text-sm font-semibold">
                       {userInfo?.username.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
@@ -118,22 +118,28 @@ export default function Navbar(): JSX.Element {
               </div>
               <DropdownMenuContent className="w-52 mt-3 p-2 flex flex-col ">
                 <DropdownMenuItem>
-                  <Link href="/profile/about" className="flex items-center">
+                  <Link href={`/profile/${userInfo?.id}/about`} className="flex items-center">
                     <UserIcon className="w-4 h-4 mr-2" /> Profile
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/profile/attendedwalks" className="flex items-center">
+                  <Link
+                    href={`/profile/${userInfo?.id}/attendedwalks`}
+                    className="flex items-center"
+                  >
                     <UserCheckIcon className="w-4 h-4 mr-2" /> Attended Walks
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/profile/organizedwalks" className="flex items-center">
+                  <Link
+                    href={`/profile/${userInfo?.id}/organizedwalks`}
+                    className="flex items-center"
+                  >
                     <FlagIcon className="w-4 h-4 mr-2" /> Organized Walks
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/profile/settings" className="flex items-center">
+                  <Link href={`/profile/${userInfo?.id}/settings`} className="flex items-center">
                     <Settings className="w-4 h-4 mr-2" /> Settings
                   </Link>
                 </DropdownMenuItem>
@@ -165,9 +171,9 @@ export default function Navbar(): JSX.Element {
                 <Image src={Logo} alt="logo" height={60} width={60} />
               </SheetHeader>
               {isLoggedIn ? (
-                <Link href={"/profile"}>
+                <Link href={`/profile/${userInfo?.id}/about`}>
                   <Avatar className="w-10 h-10">
-                    <AvatarImage src={userInfo?.image} />
+                    <AvatarImage src={userInfo?.image} className="object-cover" />
                     <AvatarFallback className="text-sm font-semibold">
                       {userInfo?.username.slice(0, 2).toUpperCase()}
                     </AvatarFallback>

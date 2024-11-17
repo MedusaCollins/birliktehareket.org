@@ -5,10 +5,15 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 
 interface AuthContextType {
   isLoggedIn: boolean;
+  userNotFound: boolean;
   userInfo: User | null;
+  profileData: User | null;
+  checkAuthStatus: () => Promise<void>;
+  setIsLoggedIn: (value: boolean) => void;
+  getProfileData: (id: string) => Promise<void>;
+  setProfileData: (userInfo: User | null) => void;
   saveWalk: (walkId: number) => Promise<void>;
   attendWalk: (walkId: number) => Promise<void>;
-  setIsLoggedIn: (value: boolean) => void;
   logout: () => Promise<void>;
 }
 
@@ -31,19 +36,40 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userNotFound, setUserNotFound] = useState(false);
   const [userInfo, setUserInfo] = useState<User | null>(null);
+  const [profileData, setProfileData] = useState<User | null>(null);
 
   const checkAuthStatus = async () => {
     try {
       const res = await axios.get("/api/auth/check-token");
 
-      if (res.data) {
-        const user = await axios.post("/api/user", { userId: res.data.userId });
-        setUserInfo(user.data.userInfo);
+      if (res.data.isLoggedIn && !userInfo) {
+        getUserInfo(res.data.userId);
       }
-      setIsLoggedIn(true);
+
+      setIsLoggedIn(res.data.isLoggedIn);
     } catch (error) {
       console.error("Error checking auth status:", error);
+    }
+  };
+
+  const getUserInfo = async (id: string) => {
+    try {
+      const res = await axios.post("/api/user", { userId: id });
+      setUserInfo(res.data.userInfo);
+    } catch (error) {
+      console.error("Error getting user info:", error);
+    }
+  };
+
+  const getProfileData = async (id: string) => {
+    try {
+      const res = await axios.post("/api/user", { userId: id });
+      setProfileData(res.data.userInfo);
+    } catch (error) {
+      setUserNotFound(true);
+      console.error("Error getting user info:", error);
     }
   };
 
@@ -56,6 +82,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const res = await axios.post("/api/posts/save", { userId: userInfo.id, walkId });
       console.log("Walk saved:", res.data);
+
+      if (res.data.walk) {
+        userInfo.walkDetails.savedWalk.push(walkId);
+      } else {
+        userInfo.walkDetails.savedWalk = userInfo.walkDetails.savedWalk.filter(
+          (id) => id !== walkId
+        );
+      }
     } catch (e) {
       console.error("Error saving walk:", e);
     }
@@ -70,6 +104,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const res = await axios.post("/api/posts/attend", { userId: userInfo.id, walkId });
       console.log("Walk attended:", res.data);
+
+      if (res.data.walk) {
+        userInfo.walkDetails.supportedWalk.push(walkId);
+      } else {
+        userInfo.walkDetails.supportedWalk = userInfo.walkDetails.supportedWalk.filter(
+          (id) => id !== walkId
+        );
+      }
     } catch (e) {
       console.error("Error attending walk:", e);
     }
@@ -87,13 +129,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     checkAuthStatus();
-  }, [isLoggedIn]);
-  // BUG: After attending in or saving a walk, it doesn't appear in the profile section without refreshing the page.
-  // BUG: At the first time cookie return null thats why user and check-token endpoints work 2 times.
+  }, []);
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, userInfo, saveWalk, attendWalk, setIsLoggedIn, logout }}
+      value={{
+        isLoggedIn,
+        userInfo,
+        userNotFound,
+        profileData,
+        checkAuthStatus,
+        getProfileData,
+        saveWalk,
+        attendWalk,
+        setIsLoggedIn,
+        setProfileData,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>
