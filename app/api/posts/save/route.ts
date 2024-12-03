@@ -26,40 +26,36 @@ export async function POST(request: NextRequest) {
 
     const walkExists = user.walkDetails.savedWalk.includes(walkId);
 
-    if (walkExists) {
-      const updatedUser = await collection.updateOne(
+    try {
+      if (walkExists) {
+        await collection.updateOne(
+          { _id: new ObjectId(userId) },
+          { $pull: { "walkDetails.savedWalk": walkId } }
+        );
+
+        return NextResponse.json({
+          success: true,
+          message: "Walk removed from saved walks,",
+        });
+      }
+
+      await collection.updateOne(
         { _id: new ObjectId(userId) },
-        { $pull: { "walkDetails.savedWalk": walkId } }
+        { $push: { "walkDetails.savedWalk": walkId } }
       );
 
       return NextResponse.json({
         success: true,
-        message: `Walk removed from saved walks, ${updatedUser}`,
+        message: "Walk saved successfully",
+        walk: walkId,
       });
+    } catch (error) {
+      return NextResponse.json(
+        { success: false, message: "Error saving walk", error },
+        { status: 500 }
+      );
     }
-
-    const updatedUser = await collection.updateOne(
-      { _id: new ObjectId(userId) },
-      { $push: { "walkDetails.savedWalk": walkId } }
-    );
-
-    if (updatedUser.modifiedCount === 0) {
-      return NextResponse.json({
-        success: false,
-        message: "Walk not saved",
-      });
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: "Walk saved successfully",
-      walk: walkId,
-    });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { success: false, message: "Error saving walk", error },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, message: "Error", error }, { status: 500 });
   }
 }

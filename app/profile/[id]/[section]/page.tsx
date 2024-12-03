@@ -90,7 +90,7 @@ export default function UserPage() {
         </div>
 
         <div className="w-full border-t border-gray-300 py-6 bg-white">
-          <div className="flex flex-row justify-center items-center space-x-12 md:text-lg text-sm font-semibold text-gray-600">
+          <div className="flex flex-row justify-center items-center space-x-12 md:text-lg md:text-left text-sm text-center font-semibold text-gray-600">
             <Link
               href={`/profile/${id}/attendedwalks`}
               className={`hover:text-emerald-600 duration-300 transition-colors ${
