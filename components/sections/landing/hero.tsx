@@ -11,8 +11,7 @@ export default function Hero() {
       </h1>
       {/* TODO: Add an image to background */}
 
-      <Link href={"/"}>
-        {/* TODO: Change link to create walk area. */}
+      <Link href={"/create-walk"}>
         <Button variant="secondary" size="lg">
           Yürüyüş Düzenle
         </Button>

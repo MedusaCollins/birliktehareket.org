@@ -102,7 +102,7 @@ export default function Navbar(): JSX.Element {
         </div>
         {isLoggedIn ? (
           <div className="space-x-6 hidden md:flex items-center">
-            <Link href={"/"}>
+            <Link href={"/create-walk"}>
               <Button variant="default">Yürüyüş Düzenle</Button>
             </Link>
             <DropdownMenu>
@@ -151,7 +151,7 @@ export default function Navbar(): JSX.Element {
           </div>
         ) : (
           <div className="space-x-6 hidden md:block">
-            <Link href={"/"}>
+            <Link href={"/create-walk"}>
               <Button variant="secondary">Yürüyüş Düzenle</Button>
             </Link>
             <Link href={"/auth/login"}>
@@ -220,7 +220,7 @@ export default function Navbar(): JSX.Element {
             <SheetClose asChild>
               <SheetHeader>
                 <Link
-                  href="/"
+                  href="/create-walk"
                   className={buttonVariants({
                     variant: isLoggedIn ? "default" : "secondary",
                   })}

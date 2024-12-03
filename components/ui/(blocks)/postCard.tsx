@@ -14,7 +14,7 @@ interface PostCardProps {
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
     <Link
-      href={`/discover/id/${post.id}`}
+      href={`/discover/id/${post._id}`}
       className="flex flex-col space-y-3 hover:bg-gray-100/50 transition-all cursor-pointer p-4 rounded-md group h-fit w-[310px]"
     >
       <div className="relative overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300 aspect-video">
@@ -47,7 +47,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 
           <div className="flex items-center space-x-1">
             <Clock className="w-4 h-4 text-slate-500" />
-            <span>{`${calculateDaysLeft(post.detail.date)} gün kaldı`}</span>
+            <span>{`${calculateDaysLeft(new Date(post.detail.startDate))} gün kaldı`}</span>
           </div>
         </div>
       </div>
