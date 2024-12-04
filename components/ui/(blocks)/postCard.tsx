@@ -52,6 +52,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 
           <div className="flex items-center space-x-1 truncate">
             <Clock className="w-4 h-4 text-slate-500" />
+            {/* TODO: Implement an "isActive" field in the post object. Once implemented, we can use "isActive" to display statuses like "day left", "ongoing", or "upcoming". */}
             <span>{`${calculateDaysLeft(new Date(post.detail.startDate))} gün kaldı`}</span>
           </div>
         </div>
