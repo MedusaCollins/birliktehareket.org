@@ -15,8 +15,23 @@ export default function Overview() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(`/api/posts?page=1&limit=10&subject=categorized`);
-        setPosts(response.data.data);
+        const response = await axios.get(
+          `/api/posts?page=1&limit=10&subject=categorized`,
+        );
+
+        // TODO: This is a temporary fix to filter out posts that ended. Need to implement a isActive section in the post object.
+        const filteredResponse = response.data.data
+          .map((group: { subject: string; posts: Post[] }) => ({
+            subject: group.subject,
+            posts: group.posts.filter(
+              (post) => new Date(post.detail.startDate) > new Date(),
+            ),
+          }))
+          .filter(
+            (group: { subject: string; posts: Post[] }) =>
+              group.posts.length > 0,
+          );
+        setPosts(filteredResponse);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
