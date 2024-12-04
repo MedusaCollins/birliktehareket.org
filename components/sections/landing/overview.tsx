@@ -38,7 +38,10 @@ export default function Overview() {
         ) : (
           <div className="space-y-10">
             {posts.map((subject, index) => (
-              <div key={index} className="border-b-2 pb-2 overflow-hidden max-w-full">
+              <div
+                key={index}
+                className="border-b-2 pb-2 overflow-hidden max-w-full"
+              >
                 <div className="flex justify-between items-center mb-4">
                   <Link
                     href={`/discover/categories/${subject.subject}`}
@@ -52,9 +55,9 @@ export default function Overview() {
                   slidesPerView={1}
                   spaceBetween={10}
                   breakpoints={{
-                    540: { slidesPerView: 2 },
-                    768: { slidesPerView: 3 },
-                    1024: { slidesPerView: 4 },
+                    653: { slidesPerView: 2 },
+                    1000: { slidesPerView: 3 },
+                    1300: { slidesPerView: 4 },
                   }}
                   className="space-x-7"
                 >
