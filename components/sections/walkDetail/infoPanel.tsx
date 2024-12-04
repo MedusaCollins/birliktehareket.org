@@ -28,7 +28,10 @@ export default function InfoPanel({ post }: { post: Post }) {
   }, [userInfo, walkId]);
 
   const handleAction = useCallback(
-    async (actionType: "save" | "attend", stateUpdate: (value: boolean) => void) => {
+    async (
+      actionType: "save" | "attend",
+      stateUpdate: (value: boolean) => void,
+    ) => {
       if (!userInfo) {
         toast({
           title: "Oops!",
@@ -42,7 +45,10 @@ export default function InfoPanel({ post }: { post: Post }) {
       }
 
       try {
-        const res = await axios.post(`/api/posts/${actionType}`, { userId: userInfo.id, walkId });
+        const res = await axios.post(`/api/posts/${actionType}`, {
+          userId: userInfo.id,
+          walkId,
+        });
 
         if (actionType === "save") {
           userInfo.walkDetails.savedWalk = res.data.walk
@@ -54,7 +60,9 @@ export default function InfoPanel({ post }: { post: Post }) {
             : userInfo.walkDetails.supportedWalk.filter((id) => id !== walkId);
         }
 
-        stateUpdate(actionType === "save" ? res.data.walk : res.data.attendedUser);
+        stateUpdate(
+          actionType === "save" ? res.data.walk : res.data.attendedUser,
+        );
       } catch (error) {
         toast({
           title: "Oops!",
@@ -66,15 +74,16 @@ export default function InfoPanel({ post }: { post: Post }) {
         });
       }
     },
-    [userInfo, walkId, toast]
+    [userInfo, walkId, toast],
   );
 
   return (
     <div className="lg:col-span-1 col-span-3 w-full h-[460px] p-5 rounded-md shadow-xl space-y-2 flex flex-col justify-between">
       <div>
-        <ProgressBar post={post} basic={true} />
+        <ProgressBar post={post} />
         <p className="text-lg font-semibold text-slate-700 overflow-hidden truncate whitespace-nowrap">
-          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe katılıyor!
+          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe
+          katılıyor!
         </p>
         <h3 className="text-sm text-slate-700 overflow-hidden truncate whitespace-nowrap">
           <span>Hedeflenen kişi sayısı: </span>
@@ -104,10 +113,16 @@ export default function InfoPanel({ post }: { post: Post }) {
             size="sm"
             onClick={() => handleAction("save", setIsSaved)}
           >
-            <Bookmark className={`w-4 h-4 text-slate-500 ${isSaved ? "fill-slate-500" : ""}`} />
+            <Bookmark
+              className={`w-4 h-4 text-slate-500 ${isSaved ? "fill-slate-500" : ""}`}
+            />
             {isSaved ? "Kaydedildi" : "Kaydet"}
           </Button>
-          <Button className="text-sm text-slate-600 flex gap-1" variant="outline" size="sm">
+          <Button
+            className="text-sm text-slate-600 flex gap-1"
+            variant="outline"
+            size="sm"
+          >
             <Share className="w-4 h-4 text-slate-500" />
             Yürüyüşü paylaş
           </Button>
@@ -115,9 +130,12 @@ export default function InfoPanel({ post }: { post: Post }) {
 
         <p className="text-sm text-slate-500 overflow-hidden">
           Bu yürüyüş,{" "}
-          <span className="text-slate-800">{formatDate(new Date(post.detail.startDate))}</span> (
+          <span className="text-slate-800">
+            {formatDate(new Date(post.detail.startDate))}
+          </span>{" "}
+          (
           <span className="text-slate-700 italic">{`${calculateDaysLeft(
-            new Date(post.detail.startDate)
+            new Date(post.detail.startDate),
           )} gün kaldı`}</span>
           ) tarihinde hedef katılım sayısına ulaşılırsa yapılacak.
         </p>
