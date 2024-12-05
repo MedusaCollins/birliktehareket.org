@@ -18,6 +18,7 @@ export default function Overview() {
         const response = await axios.get(
           `/api/posts?page=1&limit=10&subject=categorized`,
         );
+        console.log(response.data.data);
 
         // TODO: This is a temporary fix to filter out posts that ended. Need to implement a isActive section in the post object.
         const filteredResponse = response.data.data
@@ -40,12 +41,8 @@ export default function Overview() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center p-4 bg-white rounded-t-3xl">
+    <div className="flex justify-center items-center p-4 bg-white">
       <div className="space-y-8 w-full max-w-[1400px]">
-        <h1 className="text-xl font-semibold text-slate-900 text-center px-4">
-          Önemsediğin konular hakkında yapılmış olan yürüyüşleri keşfet
-        </h1>
-
         {posts.length < 1 ? (
           <div className="pt-4 flex justify-center">
             <Loading loading={true} />
@@ -78,7 +75,7 @@ export default function Overview() {
                 >
                   {subject.posts.map((post: Post, idx: number) => (
                     <SwiperSlide key={idx}>
-                      <PostCard post={post} />
+                      <PostCard post={post} subject={subject.subject} />
                     </SwiperSlide>
                   ))}
                 </Swiper>

@@ -61,7 +61,7 @@ export default function PostList({ params }: PostListProps) {
           </div>
           <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-center">
             {posts.map((post, index) => (
-              <PostCard post={post} key={index} />
+              <PostCard post={post} key={index} subject={post.detail.subject} />
             ))}
           </div>
           {page * 9 < totalItems && (
