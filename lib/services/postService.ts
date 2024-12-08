@@ -3,10 +3,10 @@ import axios from "axios";
 export const fetchPosts = async (
   page: number,
   limit: number,
-  subject: string,
+  queryParam: string,
 ) => {
   const response = await axios.get(
-    `/api/posts?page=${page}&limit=${limit - 1}&subject=${subject}`,
+    `/api/posts?page=${page}&limit=${limit}&${queryParam}`,
   );
-  return response.data.data;
+  return response.data;
 };

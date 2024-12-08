@@ -2,10 +2,17 @@ import { useState, useEffect } from "react";
 import { fetchPosts } from "@/lib/services/postService";
 import { Post, PostList } from "@/lib/types";
 
-const usePostHandler = () => {
+const usePostHandler = ({
+  title,
+  category,
+}: {
+  title?: string;
+  category?: string;
+}) => {
   const [posts, setPosts] = useState<PostList[]>([]);
   const [pageCount, setPageCount] = useState(1);
   const [isMoreAvailable, setIsMoreAvailable] = useState(true);
+  const [totalItems, setTotalItems] = useState(0);
   const [filtered, setFiltered] = useState<string>("");
   const [categories, setCategories] = useState<
     { value: string; label: string }[]
@@ -20,17 +27,14 @@ const usePostHandler = () => {
   const fetchAndSetPosts = async () => {
     setIsLoading(true);
     try {
-      const data = await fetchPosts(pageCount, 12, "categorized");
-      const filteredResponse = data
-        .map((group: { subject: string; posts: Post[] }) => ({
-          subject: group.subject,
-          posts: group.posts.filter(
-            (post) => new Date(post.detail.startDate) > new Date(),
-          ),
-        }))
-        .filter(
-          (group: { subject: string; posts: Post[] }) => group.posts.length > 0,
-        );
+      const response = await fetchPosts(
+        pageCount,
+        5,
+        `${title ? "title=" + title : category ? "subject=" + category : "subject=categorized"}`,
+      );
+      const filteredResponse = response.data.filter(
+        (group: { subject: string; posts: Post[] }) => group.posts.length > 0,
+      );
 
       setCategories((prevCategories) => {
         const newCategories = filteredResponse.map(
@@ -55,8 +59,14 @@ const usePostHandler = () => {
 
         return mergedCategories;
       });
+
+      const totalPostCount = filteredResponse.reduce(
+        (total: number, group: { posts: Post[] }) => total + group.posts.length,
+        0,
+      );
       setIsMoreAvailable(filteredResponse.length > 0);
       setPosts((prevPosts) => [...prevPosts, ...filteredResponse]);
+      setTotalItems((prevTotalItems) => prevTotalItems + totalPostCount);
     } catch (error) {
       console.error("Error fetching posts:", error);
     } finally {
@@ -82,6 +92,7 @@ const usePostHandler = () => {
     filtered,
     handleFilterChange,
     categories,
+    totalItems,
     isMoreAvailable,
     isLoading,
     setPageCount,

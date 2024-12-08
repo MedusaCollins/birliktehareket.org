@@ -18,41 +18,43 @@ export async function GET(request: NextRequest) {
 
   let filteredData = await collection.find().toArray();
 
+  let groupedPosts: { subject: string; posts: Post[] }[] = [];
+
   if (subject === "categorized") {
-    const groupedPosts = getGroupedPostsBySubject(filteredData);
-    const paginatedGroupedPosts = groupedPosts.map((group) => {
-      const paginatedPosts = group.posts.slice(startIndex, endIndex);
-      return {
-        subject: group.subject,
-        posts: paginatedPosts,
-      };
-    });
+    groupedPosts = getGroupedPostsBySubject(filteredData);
+  } else {
+    if (subject && subject !== "null") {
+      filteredData = filteredData.filter(
+        (post) => post.detail.subject === subject,
+      );
+    }
 
-    return NextResponse.json({
-      success: true,
-      data: paginatedGroupedPosts,
-      totalItems: groupedPosts.length,
-      page,
-      limit,
-    });
-  } else if (subject && subject !== "null") {
-    filteredData = filteredData.filter(
-      (post) => post.detail.subject === subject,
-    );
+    if (title) {
+      filteredData = filteredData.filter((post) =>
+        post.title.toLowerCase().includes(title),
+      );
+    }
+
+    groupedPosts = getGroupedPostsBySubject(filteredData);
   }
 
-  if (title) {
-    filteredData = filteredData.filter((post) =>
-      post.title.toLowerCase().includes(title),
-    );
-  }
+  const paginatedGroupedPosts = groupedPosts.map((group) => {
+    const paginatedPosts = group.posts.slice(startIndex, endIndex);
+    return {
+      subject: group.subject,
+      posts: paginatedPosts,
+    };
+  });
 
-  const paginatedData = filteredData.slice(startIndex, endIndex);
+  const totalItems = groupedPosts.reduce(
+    (total, group) => total + group.posts.length,
+    0,
+  );
 
   return NextResponse.json({
     success: true,
-    data: paginatedData,
-    totalItems: filteredData.length,
+    data: paginatedGroupedPosts,
+    totalItems,
     page,
     limit,
   });

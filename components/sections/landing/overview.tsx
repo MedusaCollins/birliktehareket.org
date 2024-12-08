@@ -16,7 +16,7 @@ export default function Overview() {
     isMoreAvailable,
     isLoading,
     setPageCount,
-  } = usePostHandler();
+  } = usePostHandler({});
 
   return (
     <div className="flex justify-center items-center p-4 bg-white">
