@@ -38,7 +38,7 @@ export default function Hero() {
       <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center sm:w-[30rem] w-[80%]">
         <Input
           className="w-full p-8 bg-white"
-          placeholder="Search..."
+          placeholder="Yürüyüş Ara"
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           value={searchTerm}
