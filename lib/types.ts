@@ -12,10 +12,15 @@ export const Post = z.object({
   organizer: z.string().min(1, "Organizer is required"),
   images: z.union([
     z.array(z.string().url("Invalid image URL")).max(5, "Maximum 5 images"),
-    z.string().min(1, "At least one image is required").url("Invalid image URL"),
+    z
+      .string()
+      .min(1, "At least one image is required")
+      .url("Invalid image URL"),
   ]),
   detail: z.object({
-    startDate: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid date"),
+    startDate: z
+      .string()
+      .refine((val) => !isNaN(Date.parse(val)), "Invalid date"),
     location: z.object({
       start: z.string().min(1, "Start location is required"),
       end: z.string().min(1, "End location is required"),
@@ -27,31 +32,40 @@ export const Post = z.object({
     .array(
       z.object({
         userId: z.string(),
-        date: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
-      })
+        date: z
+          .string()
+          .refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
+      }),
     )
     .optional(),
   supporters: z
     .array(
       z.object({
         userId: z.string(),
-        date: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
-      })
+        date: z
+          .string()
+          .refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
+      }),
     )
     .optional(),
   updates: z
     .array(
       z.object({
-        date: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
+        date: z
+          .string()
+          .refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
+        title: z.string(),
         message: z.string(),
         userId: z.string(),
         images: z.array(z.string().url("Invalid image URL")).optional(),
-      })
+      }),
     )
     .optional(),
   postInfo: z
     .object({
-      createdAt: z.string().refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
+      createdAt: z
+        .string()
+        .refine((val) => !isNaN(Date.parse(val)), "Invalid date format"),
       createdBy: z.string(),
     })
     .optional(),
@@ -81,6 +95,14 @@ export type AuthContextType = {
   setIsLoggedIn: (value: boolean) => void;
   getProfileData: (id: string) => Promise<void>;
   logout: () => Promise<void>;
+};
+
+export type PostContextType = {
+  post: Post | undefined;
+  loading: boolean;
+  selectedImage: string;
+  setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
+  fetchPost: (id: string) => Promise<void>;
 };
 
 export type Post = z.infer<typeof Post>;
