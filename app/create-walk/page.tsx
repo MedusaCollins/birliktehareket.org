@@ -1,6 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -18,12 +24,17 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { Post } from "@/lib/types";
 import { useAuth } from "@/context/AuthContext";
+
 type CreateWalkFormData = z.infer<typeof Post>;
 
 export default function CreateWalk() {
   const { toast } = useToast();
   const { userInfo } = useAuth();
   const router = useRouter();
+
+  if (!userInfo) {
+    router.push("/auth/login");
+  }
 
   const form = useForm<CreateWalkFormData>({
     resolver: zodResolver(Post),
@@ -58,7 +69,10 @@ export default function CreateWalk() {
       const res = await axios.post("/api/posts/create", walkData);
       toast({ description: "Walk created successfully!", variant: "default" });
       if (userInfo)
-        userInfo.walkDetails.ownWalk = [...userInfo.walkDetails.ownWalk, res.data.walk.id];
+        userInfo.walkDetails.ownWalk = [
+          ...userInfo.walkDetails.ownWalk,
+          res.data.walk.id,
+        ];
       form.reset();
       router.push(`profile/${userInfo?.id}/organizedwalks`);
     } catch (error) {
@@ -93,8 +107,12 @@ export default function CreateWalk() {
     <div className="flex justify-center items-center w-full min-h-screen bg-gray-50 p-6">
       <Card className="mx-auto w-full max-w-2xl shadow-lg border border-gray-200">
         <CardHeader>
-          <CardTitle className="text-2xl font-semibold">Create a Walk</CardTitle>
-          <CardDescription>Provide the details to organize a new walk.</CardDescription>
+          <CardTitle className="text-2xl font-semibold">
+            Create a Walk
+          </CardTitle>
+          <CardDescription>
+            Provide the details to organize a new walk.
+          </CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -150,7 +168,10 @@ export default function CreateWalk() {
                   <FormItem>
                     <FormLabel>Organizer</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter the name of the organizer " {...field} />
+                      <Input
+                        placeholder="Enter the name of the organizer "
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -168,7 +189,11 @@ export default function CreateWalk() {
                           type="date"
                           {...field}
                           value={
-                            field.value ? new Date(field.value).toISOString().split("T")[0] : ""
+                            field.value
+                              ? new Date(field.value)
+                                  .toISOString()
+                                  .split("T")[0]
+                              : ""
                           }
                           onChange={(e) => field.onChange(e.target.value)}
                         />
@@ -205,7 +230,10 @@ export default function CreateWalk() {
                     <FormItem>
                       <FormLabel>Start Location</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter starting location" {...field} />
+                        <Input
+                          placeholder="Enter starting location"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -234,7 +262,10 @@ export default function CreateWalk() {
                   <FormItem>
                     <FormLabel>Subject</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Environment, Politics" {...field} />
+                      <Input
+                        placeholder="e.g., Environment, Politics"
+                        {...field}
+                      />
                       {/* This gonna be a select option open issue maybe*/}
                     </FormControl>
                     <FormMessage />
