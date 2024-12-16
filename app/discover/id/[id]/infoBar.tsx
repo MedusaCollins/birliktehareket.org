@@ -1,5 +1,6 @@
 import {
   BookMarked,
+  ChevronsDown,
   Clock,
   Flag,
   MapPin,
@@ -108,11 +109,16 @@ export default function InfoBar() {
           </Button>
         </div>
       </div>
-      <div className="flex items-center space-x-1 truncate border-t-2 pt-2 mt-5 border-slate-200">
-        <MapPin className="w-4 h-4 text-slate-500" />
-        <span className="truncate">
-          {post.detail.location.start} - {post.detail.location.end}
-        </span>
+      <div className="flex flex-col bg-slate-100 rounded-md p-2 items-start justify-between h-full pt-2 mt-5 border border-slate-200">
+        <div className="flex items-center space-x-2">
+          <MapPin className="size-6 text-red-500" />
+          <p className="break-all">{post.detail.location.start}</p>
+        </div>
+        <ChevronsDown className="size-6 text-slate-500" />
+        <div className="flex items-center space-x-2">
+          <MapPin className="size-6 text-green-500" />
+          <span className="break-all">{post.detail.location.end}</span>
+        </div>
       </div>
     </div>
   );
