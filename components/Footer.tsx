@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  LinkedInLogoIcon,
-  TwitterLogoIcon,
-  GitHubLogoIcon,
-  InstagramLogoIcon,
-  DiscordLogoIcon,
-  NotionLogoIcon,
-} from "@radix-ui/react-icons";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import Logo from "../public/logo.svg";
 import Image from "next/image";
@@ -15,17 +8,16 @@ import { useState } from "react";
 
 export default function Footer(): JSX.Element {
   const [logos] = useState([
-    { link: "/", logo: <InstagramLogoIcon className="w-6 h-6" /> },
-    { link: "/", logo: <TwitterLogoIcon className="w-6 h-6" /> },
-    { link: "/", logo: <DiscordLogoIcon className="w-6 h-6" /> },
-    { link: "/", logo: <NotionLogoIcon className="w-6 h-6" /> },
-    { link: "/", logo: <GitHubLogoIcon className="w-6 h-6" /> },
-    { link: "/", logo: <LinkedInLogoIcon className="w-6 h-6" /> },
+    {
+      link: "https://github.com/medusacollins/birliktehareket.org",
+      logo: <GitHubLogoIcon className="w-6 h-6" />,
+    },
   ]);
-  const [links] = useState([
-    { link: "/", text: "Terms" },
-    { link: "/", text: "Privacy" },
-    { link: "/", text: "Cookies" },
+
+  const [links] = useState<{ link: string; text: string }[]>([
+    //{ link: "/", text: "Terms" },
+    //{ link: "/", text: "Privacy" },
+    //{ link: "/", text: "Cookies" },
     //{ link: "/", text: "Legal" },
     //{ link: "/", text: "Contact" },
     //{ link: "/", text: "Status" },
@@ -41,6 +33,7 @@ export default function Footer(): JSX.Element {
             <Link
               key={index}
               href={logo.link}
+              target="_blank"
               className="hover:scale-110 duration-500 hover:text-white"
             >
               {logo.logo}
