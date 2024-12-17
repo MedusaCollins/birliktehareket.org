@@ -13,6 +13,8 @@ const Supporters = () => {
           supporter: {
             date: string;
             userId: string;
+            userImage?: string;
+            username?: string;
           },
           index: number,
         ) => {
@@ -21,15 +23,17 @@ const Supporters = () => {
               key={index}
               className="flex flex-col justify-items items-center"
             >
-              <Image
-                key={index}
-                src={supporter.userImage}
-                alt="avatar"
-                width={100}
-                height={100}
-                onClick={() => console.log("kullanıcı profiline git")}
-                className="w-12 h-12 rounded-full hover:cursor-pointer"
-              />
+              {supporter.userImage && (
+                <Image
+                  key={index}
+                  src={supporter.userImage}
+                  alt="avatar"
+                  width={100}
+                  height={100}
+                  onClick={() => console.log("kullanıcı profiline git")}
+                  className="w-12 h-12 rounded-full hover:cursor-pointer"
+                />
+              )}
               <h3 onClick={() => console.log("kullanıcı profiline git")}>
                 {supporter.username}
               </h3>

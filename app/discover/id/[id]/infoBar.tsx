@@ -13,12 +13,78 @@ import { Button } from "@/components/ui/button";
 import calculateDaysLeft from "@/lib/helpers/calculateDaysLeft";
 import Image from "next/image";
 import { usePostContext } from "@/context/PostContext";
+import { useAuth } from "@/context/AuthContext";
+import { useCallback, useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import axios from "axios";
 
 export default function InfoBar() {
   const { post } = usePostContext();
 
-  if (!post) return null;
+  //const [isSaved, setIsSaved] = useState(false);
+  const [isAttended, setIsAttended] = useState(false);
+  const { userInfo } = useAuth();
+  const { toast } = useToast();
+  const walkId = post?._id as string;
 
+  useEffect(() => {
+    if (userInfo) {
+      //setIsSaved(userInfo.walkDetails.savedWalk.includes(walkId));
+      setIsAttended(userInfo.walkDetails.supportedWalk.includes(walkId));
+    }
+  }, [userInfo, walkId]);
+
+  const handleAction = useCallback(
+    async (
+      actionType: "save" | "attend",
+      stateUpdate: (value: boolean) => void,
+    ) => {
+      if (!userInfo) {
+        toast({
+          title: "Oops!",
+          description: `You must be logged in to ${
+            actionType === "save" ? "save" : "join"
+          } a walk.`,
+          variant: "destructive",
+          duration: 2000,
+        });
+        return;
+      }
+
+      try {
+        const res = await axios.post(`/api/posts/${actionType}`, {
+          userId: userInfo.id,
+          walkId,
+        });
+
+        if (actionType === "save") {
+          userInfo.walkDetails.savedWalk = res.data.walk
+            ? [...userInfo.walkDetails.savedWalk, walkId]
+            : userInfo.walkDetails.savedWalk.filter((id) => id !== walkId);
+        } else {
+          userInfo.walkDetails.supportedWalk = res.data.attendedUser
+            ? [...userInfo.walkDetails.supportedWalk, walkId]
+            : userInfo.walkDetails.supportedWalk.filter((id) => id !== walkId);
+        }
+
+        stateUpdate(
+          actionType === "save" ? res.data.walk : res.data.attendedUser,
+        );
+      } catch (error) {
+        toast({
+          title: "Oops!",
+          description: `An error occurred while ${
+            actionType === "save" ? "saving" : "joining"
+          } the walk. ${error}`,
+          variant: "destructive",
+          duration: 2000,
+        });
+      }
+    },
+    [userInfo, walkId, toast],
+  );
+
+  if (!post || !post.postInfo) return null;
   return (
     <div className="h-full w-full flex flex-col">
       <div className="flex justify-between">
@@ -101,11 +167,12 @@ export default function InfoBar() {
         </div>
         <div className="w-1/3">
           <Button
-            variant="default"
             className="font-semibold text-base w-full"
-            onClick={() => console.log("Yürüyüşe Katıl")}
+            variant={isAttended ? "destructive" : "default"}
+            size="lg"
+            onClick={() => handleAction("attend", setIsAttended)}
           >
-            Yürüyüşe Katıl
+            {isAttended ? "Bu yürüyüşden ayrıl" : "Bu yürüyüşe katıl"}
           </Button>
         </div>
       </div>

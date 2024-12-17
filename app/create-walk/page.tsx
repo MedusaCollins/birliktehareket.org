@@ -96,11 +96,11 @@ export default function CreateWalk() {
     return userInfo
       ? true
       : toast({
-          title: "Oops!",
-          description: "You must be logged in to create a walk.",
-          variant: "destructive",
-          duration: 2000,
-        });
+        title: "Oops!",
+        description: "You must be logged in to create a walk.",
+        variant: "destructive",
+        duration: 2000,
+      });
   };
 
   return (
@@ -191,8 +191,8 @@ export default function CreateWalk() {
                           value={
                             field.value
                               ? new Date(field.value)
-                                  .toISOString()
-                                  .split("T")[0]
+                                .toISOString()
+                                .split("T")[0]
                               : ""
                           }
                           onChange={(e) => field.onChange(e.target.value)}
