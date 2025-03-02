@@ -9,8 +9,8 @@ export async function PATCH(request: NextRequest, { params }: { params: { walkId
     const walkId = params.walkId;
     const body = await request.json();
     const client = await clientPromise;
-    const db = client.db("test");
-    const usersCollection = db.collection<User>("test");
+    const db = client.db("Users");
+    const usersCollection = db.collection<User>("accounts");
     const walksCollection = db.collection<Post>("walks");
 
     const {

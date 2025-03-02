@@ -28,11 +28,10 @@ async function populateWalkDetails(walkIds: string[], walksCollection: Collectio
 export async function POST(request: Request, { params }: { params: { userId: string } }) {
   try {
     const client = await clientPromise;
-    const db = client.db("test");
+    const db = client.db("Users");
     const walksCollection = db.collection("walks");
-    const usersCollection = db.collection("test");
+    const usersCollection = db.collection("accounts");
     const userId = params.userId;
-    // const { userId } = await request.json();
 
     if (!userId) {
       return NextResponse.json({ success: false, message: "userId is required" }, { status: 400 });

@@ -9,8 +9,8 @@ export async function DELETE(request: NextRequest, { params }: { params: { walkI
     const walkObjectId = new ObjectId(walkId);
 
     const client = await clientPromise;
-    const db = client.db("test");
-    const usersCollection = db.collection<User>("Users");
+    const db = client.db("Users");
+    const usersCollection = db.collection<User>("accounts");
     const walksCollection = db.collection<Post>("walks");
 
     const deletedWalk = await walksCollection.findOneAndDelete({
