@@ -8,21 +8,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/logo.svg";
 import { Button, buttonVariants } from "./ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from "./ui/sheet";
-import {
-  LogOutIcon,
-  Menu,
-  Settings,
-  UserIcon,
-  UserCheckIcon,
-  FlagIcon,
-} from "lucide-react";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
+import { LogOutIcon, Menu, Settings, UserIcon, UserCheckIcon, FlagIcon } from "lucide-react";
 import { Input } from "./ui/input";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -61,9 +48,7 @@ export default function Navbar(): JSX.Element {
   }, [pathname]);
 
   const handleSearch = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
     if ("value" in e.target) {
       setSearchTerm(e.target.value);
@@ -118,10 +103,7 @@ export default function Navbar(): JSX.Element {
               <div className="flex items-center gap-2">
                 <DropdownMenuTrigger asChild>
                   <Avatar className="w-10 h-10">
-                    <AvatarImage
-                      src={userInfo.image}
-                      className="object-cover"
-                    />
+                    <AvatarImage src={userInfo.image} className="object-cover" />
                     <AvatarFallback className="text-sm font-semibold">
                       {userInfo.username.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
@@ -130,34 +112,22 @@ export default function Navbar(): JSX.Element {
               </div>
               <DropdownMenuContent className="w-52 mt-3 p-2 flex flex-col ">
                 <DropdownMenuItem>
-                  <Link
-                    href={`/profile/${userInfo.id}/about`}
-                    className="flex items-center"
-                  >
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <UserIcon className="w-4 h-4 mr-2" /> Profile
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link
-                    href={`/profile/${userInfo.id}/attendedwalks`}
-                    className="flex items-center"
-                  >
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <UserCheckIcon className="w-4 h-4 mr-2" /> Attended Walks
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link
-                    href={`/profile/${userInfo.id}/organizedwalks`}
-                    className="flex items-center"
-                  >
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <FlagIcon className="w-4 h-4 mr-2" /> Organized Walks
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link
-                    href={`/profile/${userInfo.id}/settings`}
-                    className="flex items-center"
-                  >
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <Settings className="w-4 h-4 mr-2" /> Settings
                   </Link>
                 </DropdownMenuItem>
@@ -189,12 +159,9 @@ export default function Navbar(): JSX.Element {
                 <Image src={Logo} alt="logo" height={60} width={60} />
               </SheetHeader>
               {isLoggedIn ? (
-                <Link href={`/profile/${userInfo?.id}/about`}>
+                <Link href={`/profile/${userInfo?.id}`}>
                   <Avatar className="w-10 h-10">
-                    <AvatarImage
-                      src={userInfo?.image}
-                      className="object-cover"
-                    />
+                    <AvatarImage src={userInfo?.image} className="object-cover" />
                     <AvatarFallback className="text-sm font-semibold">
                       {userInfo?.username.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
@@ -215,9 +182,7 @@ export default function Navbar(): JSX.Element {
                   <Link
                     href={`/discover/search/${searchTerm}`}
                     className={`${
-                      searchTerm
-                        ? "text-black"
-                        : "text-gray-400 pointer-events-none"
+                      searchTerm ? "text-black" : "text-gray-400 pointer-events-none"
                     } absolute right-8 duration-500`}
                   >
                     <MagnifyingGlassIcon className="w-5 h-5" />
@@ -231,18 +196,12 @@ export default function Navbar(): JSX.Element {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link
-                href="/about"
-                className={buttonVariants({ variant: "ghost" })}
-              >
+              <Link href="/about" className={buttonVariants({ variant: "ghost" })}>
                 About
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link
-                href="/contact"
-                className={buttonVariants({ variant: "ghost" })}
-              >
+              <Link href="/contact" className={buttonVariants({ variant: "ghost" })}>
                 Contact
               </Link>
             </SheetClose>
@@ -265,10 +224,7 @@ export default function Navbar(): JSX.Element {
                     <span className="font-semibold">Logout</span>
                   </Button>
                 ) : (
-                  <Link
-                    href="/auth/login"
-                    className={buttonVariants({ variant: "default" })}
-                  >
+                  <Link href="/auth/login" className={buttonVariants({ variant: "default" })}>
                     <span className="font-semibold">Sign in</span>
                   </Link>
                 )}

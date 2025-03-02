@@ -1,19 +1,14 @@
 "use client";
 
 import axios from "axios";
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { User, AuthContextType } from "@/lib/types";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState<User | null>(null);
 
   const checkAuthStatus = async () => {
@@ -25,12 +20,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error("Error checking auth status:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const fetchUserInfo = async (id: string) => {
     try {
-      const { data } = await axios.post("/api/user", { userId: id });
+      const { data } = await axios.post(`/api/user/${id}`);
       setUserInfo(data.userInfo);
     } catch (error) {
       console.error("Error fetching user info:", error);
@@ -56,6 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       value={{
         isLoggedIn,
         userInfo,
+        loading,
         fetchUserInfo,
         checkAuthStatus,
         logout,

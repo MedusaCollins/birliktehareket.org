@@ -1,44 +1,56 @@
 import {
-  BookMarked,
   ChevronsDown,
   Clock,
   Flag,
   MapPin,
   Share2Icon,
   UsersRound,
+  EllipsisVertical,
+  PencilLine,
+  Trash,
+  Bookmark,
 } from "lucide-react";
 import ProgressBar from "@/components/ui/(blocks)/progressBar";
 import formatPeople from "@/lib/helpers/formatPeople";
 import { Button } from "@/components/ui/button";
 import calculateDaysLeft from "@/lib/helpers/calculateDaysLeft";
-import Image from "next/image";
 import { usePostContext } from "@/context/PostContext";
 import { useAuth } from "@/context/AuthContext";
 import { useCallback, useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
+import { Post } from "@/lib/types";
+import ShareDialog from "./shareDialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function InfoBar() {
-  const { post } = usePostContext();
+  const { post, deletePost } = usePostContext();
 
-  //const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const [isAttended, setIsAttended] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { userInfo } = useAuth();
   const { toast } = useToast();
-  const walkId = post?._id as string;
+  const walkId = post?._id?.toString();
 
   useEffect(() => {
     if (userInfo) {
-      //setIsSaved(userInfo.walkDetails.savedWalk.includes(walkId));
-      setIsAttended(userInfo.walkDetails.supportedWalk.includes(walkId));
+      setIsSaved(userInfo.walkDetails.savedWalk.some((walk) => walk._id.toString() === walkId));
+      setIsAttended(
+        userInfo.walkDetails.supportedWalk.some((walk) => walk._id.toString() === walkId)
+      );
     }
   }, [userInfo, walkId]);
 
   const handleAction = useCallback(
-    async (
-      actionType: "save" | "attend",
-      stateUpdate: (value: boolean) => void,
-    ) => {
+    async (actionType: "save" | "attend", stateUpdate: (value: boolean) => void) => {
       if (!userInfo) {
         toast({
           title: "Oops!",
@@ -57,19 +69,21 @@ export default function InfoBar() {
           walkId,
         });
 
-        if (actionType === "save") {
-          userInfo.walkDetails.savedWalk = res.data.walk
-            ? [...userInfo.walkDetails.savedWalk, walkId]
-            : userInfo.walkDetails.savedWalk.filter((id) => id !== walkId);
+        const key = actionType === "save" ? "savedWalk" : "supportedWalk";
+        const dataKey = actionType === "save" ? "walk" : "attendedUser";
+
+        if (res.data[dataKey]) {
+          userInfo.walkDetails[key] = [
+            ...userInfo.walkDetails[key],
+            { _id: res.data[dataKey] } as Post,
+          ];
         } else {
-          userInfo.walkDetails.supportedWalk = res.data.attendedUser
-            ? [...userInfo.walkDetails.supportedWalk, walkId]
-            : userInfo.walkDetails.supportedWalk.filter((id) => id !== walkId);
+          userInfo.walkDetails[key] = userInfo.walkDetails[key].filter(
+            (walk) => walk._id.toString() !== walkId
+          );
         }
 
-        stateUpdate(
-          actionType === "save" ? res.data.walk : res.data.attendedUser,
-        );
+        stateUpdate(actionType === "save" ? res.data.walk : res.data.attendedUser);
       } catch (error) {
         toast({
           title: "Oops!",
@@ -81,7 +95,7 @@ export default function InfoBar() {
         });
       }
     },
-    [userInfo, walkId, toast],
+    [userInfo, walkId, toast]
   );
 
   if (!post || !post.postInfo) return null;
@@ -89,21 +103,20 @@ export default function InfoBar() {
     <div className="h-full w-full flex flex-col">
       <div className="flex justify-between">
         <div className="flex justify-center items-center space-x-5 truncate">
-          <Image
-            src={post.postInfo.createdBy.userImage}
-            alt="avatar"
-            width={100}
-            height={100}
-            onClick={() => console.log("kullanıcı profiline git")}
-            className="w-12 h-12 rounded-full hover:cursor-pointer"
-          />
+          <Link href={`/profile/${post.postInfo.createdBy.userId}`}>
+            <Avatar className="w-12 h-12">
+              <AvatarImage src={post.postInfo.createdBy.userImage} className="object-cover" />
+              <AvatarFallback className="text-sm font-semibold">
+                {post.postInfo.createdBy.username?.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </Link>
           <div className="font-medium flex flex-col justify-start -mt-2 truncate">
-            <span
-              className="text-lg hover:cursor-pointer w-fit"
-              onClick={() => console.log("kullanıcı profiline git")}
-            >
-              {post.postInfo.createdBy.username}
-            </span>
+            <Link href={`/profile/${post.postInfo.createdBy.userId}`}>
+              <span className="text-lg hover:cursor-pointer w-fit">
+                {post.postInfo.createdBy.username}
+              </span>
+            </Link>
             <span className="text-green-600 font-semibold">
               {post.postInfo.createdBy.ownWalkCount} yürüyüş düzenledi
             </span>
@@ -111,27 +124,48 @@ export default function InfoBar() {
         </div>
         <div>
           <span className="text-sm text-slate-600 truncate flex items-center">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => console.log("Kaydet")}
-            >
-              <BookMarked />
+            <Button variant="ghost" size="sm" onClick={() => handleAction("save", setIsSaved)}>
+              <Bookmark className={isSaved ? "fill-slate-700" : ""} />
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => console.log("Paylaş")}
-            >
+            <Button variant="ghost" size="sm" onClick={() => setIsDialogOpen(!isDialogOpen)}>
               <Share2Icon />
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => console.log("Raporla")}
-            >
+            <Button variant="ghost" size="sm" onClick={() => console.log("Raporla")}>
               <Flag />
             </Button>
+            {(userInfo?.id === post.postInfo.createdBy.userId ||
+              post.moderators.some((m) => m.userId === userInfo?.id)) && (
+              <Button variant="ghost" size="sm" onClick={() => console.log("Dropout")}>
+                <DropdownMenu>
+                  <div className="flex items-center gap-2">
+                    <DropdownMenuTrigger asChild>
+                      <Link href={`/discover/id/${post._id}/edit`}>
+                        <EllipsisVertical />
+                      </Link>
+                    </DropdownMenuTrigger>
+                  </div>
+                  <DropdownMenuContent className="w-fit mt-3 flex flex-col p-2">
+                    <DropdownMenuItem>
+                      <Link
+                        href={`/discover/id/${post._id}/edit`}
+                        className="flex items-center space-x-3 p-2 font-semibold"
+                      >
+                        <PencilLine />
+                        <span>Yürüyüşü Düzenle</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    {userInfo?.id === post.postInfo.createdBy.userId && (
+                      <DropdownMenuItem onClick={() => deletePost(post._id.toString())}>
+                        <div className="flex items-center space-x-3 p-2 text-red-500 font-semibold">
+                          <Trash />
+                          <span>Yürüyüşü Sil</span>
+                        </div>
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </Button>
+            )}
           </span>
         </div>
       </div>
@@ -147,10 +181,10 @@ export default function InfoBar() {
           <p className="text-slate-600 truncate flex space-x-2">
             <UsersRound className="w-6 h-6 text-slate-500 my-1" />
             <span className="flex flex-col">
-              <p className="text-xl font-bold">
+              <span className="text-xl font-bold">
                 {formatPeople(post.supporters?.length || 0)} kişi
-              </p>
-              <p>Toplam Katılan</p>
+              </span>
+              <span>Toplam Katılan</span>
             </span>
           </p>
         </div>
@@ -158,10 +192,10 @@ export default function InfoBar() {
           <p className="text-slate-600 truncate flex space-x-2">
             <Clock className="w-6 h-6 text-slate-500 my-1" />
             <span className="flex flex-col">
-              <p className="text-xl font-bold">
+              <span className="text-xl font-bold">
                 {calculateDaysLeft(new Date(post.detail.startDate))}
-              </p>
-              <p>gün kaldı</p>
+              </span>
+              <span>gün kaldı</span>
             </span>
           </p>
         </div>
@@ -187,6 +221,11 @@ export default function InfoBar() {
           <span className="break-all">{post.detail.location.end}</span>
         </div>
       </div>
+      <ShareDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(!isDialogOpen)}
+        url={`https://birliktehareket.org/discover/id/${post._id.toString()}`}
+      />
     </div>
   );
 }

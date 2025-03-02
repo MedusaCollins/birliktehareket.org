@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/database/mongodb";
 import { HttpStatusCode } from "axios";
 import { ObjectId } from "mongodb";
-import { Post, User } from "@/lib/types";
+import { CreatePost, User } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const client = await clientPromise;
     const db = client.db("Users");
-    const collection = db.collection<Post>("walks");
+    const collection = db.collection<CreatePost>("walks");
     const users = db.collection<User>("accounts");
 
     const { title, description, organizer, images, detail, moderators, userId } = body;
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newWalk: Post = {
+    const newWalk: CreatePost = {
       title,
       description,
       organizer,

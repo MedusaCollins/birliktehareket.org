@@ -2,12 +2,14 @@ import { Post, ProfileHandlerReturn, User } from "@/lib/types";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function useProfileHandler(): ProfileHandlerReturn {
   const { id } = useParams<{ id: string }>();
-  const [section, setSection] = useState<
-    "attendedwalks" | "organizedwalks" | "savedwalks"
-  >("organizedwalks");
+  const { userInfo } = useAuth();
+  const [section, setSection] = useState<"attendedwalks" | "organizedwalks" | "savedwalks">(
+    "organizedwalks"
+  );
   const [displayData, setDisplayData] = useState<User | null>(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -19,9 +21,10 @@ export default function useProfileHandler(): ProfileHandlerReturn {
     organizedwalks: "Organized Walks",
     savedwalks: "Saved Walks",
   };
-  const handleLoadingChange = (
-    newSection: "attendedwalks" | "organizedwalks" | "savedwalks",
-  ) => {
+
+  const userId = userInfo?.id;
+
+  const handleLoadingChange = (newSection: "attendedwalks" | "organizedwalks" | "savedwalks") => {
     setSection(newSection);
     setIsLoading(true);
     setTimeout(() => setIsLoading(false), 400);
@@ -30,7 +33,7 @@ export default function useProfileHandler(): ProfileHandlerReturn {
   useEffect(() => {
     async function fetchUserInfo(userId: string) {
       try {
-        const response = await axios.post("/api/user", { userId });
+        const response = await axios.post(`/api/user/${userId}`);
         setDisplayData(response.data.userInfo);
         setIsLoading(false);
       } catch (error) {
@@ -48,8 +51,10 @@ export default function useProfileHandler(): ProfileHandlerReturn {
     organizedwalks: walkDetails?.ownWalk as Post[] | undefined,
     savedwalks: walkDetails?.savedWalk as Post[] | undefined,
   };
+
   return {
     id,
+    userId,
     displayData,
     section,
     handleLoadingChange,

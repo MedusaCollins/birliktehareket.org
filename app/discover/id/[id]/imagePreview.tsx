@@ -15,11 +15,11 @@ export default function ImagePreview() {
 
   return (
     <div className="h-full w-full">
-      <div className="flex flex-col justify-between h-full">
+      <div className="flex flex-col justify-around h-full">
         <Image
           src={selectedImage}
           alt="post image"
-          className="mx-auto rounded-xl"
+          className="mx-auto rounded-xl aspect-video object-cover"
           width={525}
           height={50}
         />
@@ -35,7 +35,7 @@ export default function ImagePreview() {
                   <Image
                     src={image}
                     alt="post image"
-                    className="mx-auto rounded-xl"
+                    className="mx-auto rounded-xl aspect-video object-cover"
                     width={225}
                     height={100}
                   />
