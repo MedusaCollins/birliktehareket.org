@@ -6,11 +6,7 @@ import PostCard from "@/components/ui/(blocks)/postCard";
 import { Button } from "@/components/ui/button";
 import usePostHandler from "@/hooks/usePostHandler";
 
-export default function DynamicPage({
-  params,
-}: {
-  params: { title?: string; category?: string };
-}) {
+export default function DynamicPage({ params }: { params: { title?: string; category?: string } }) {
   const {
     posts,
     filteredPosts,
@@ -37,9 +33,8 @@ export default function DynamicPage({
           <>
             <div className="flex justify-between max-w-[1300px] mx-auto">
               <div className="text-xl font-medium text-slate-700">
-                <span className="text-green-500">{params.title}</span> ile
-                alakalı <span className="text-green-500">{totalItems}</span>{" "}
-                yürüyüş listelendi
+                <span className="text-green-500">{params.title}</span> ile alakalı{" "}
+                <span className="text-green-500">{totalItems}</span> yürüyüş listelendi
               </div>
 
               <FilteredType
@@ -58,12 +53,8 @@ export default function DynamicPage({
                 <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 overflow-hidden">
                   {filteredPosts.map((subject) =>
                     subject.posts.map((post) => (
-                      <PostCard
-                        key={post._id}
-                        post={post}
-                        subject={subject.subject}
-                      />
-                    )),
+                      <PostCard key={post._id?.toString()} post={post} subject={subject.subject} />
+                    ))
                   )}
                 </div>
                 <Button

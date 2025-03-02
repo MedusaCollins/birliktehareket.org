@@ -44,12 +44,8 @@ export default function Overview() {
                 <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 overflow-hidden">
                   {filteredPosts.map((subject) =>
                     subject.posts.map((post) => (
-                      <PostCard
-                        key={post._id}
-                        post={post}
-                        subject={subject.subject}
-                      />
-                    )),
+                      <PostCard key={post._id?.toString()} post={post} subject={subject.subject} />
+                    ))
                   )}
                 </div>
                 <Button

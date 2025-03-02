@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useCallback,
-} from "react";
+import React, { createContext, useContext, ReactNode, useState, useCallback } from "react";
 import axios from "axios";
 import { Post, PostContextType } from "@/lib/types";
 
@@ -34,6 +28,19 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  const deletePost = useCallback(async (id: string) => {
+    try {
+      const response = await axios.delete(`/api/posts/delete/${id}`);
+      if (response.data.success) {
+        setPost(undefined);
+      } else {
+        console.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  }, []);
+
   return (
     <PostContext.Provider
       value={{
@@ -42,6 +49,7 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
         selectedImage,
         setSelectedImage,
         fetchPost,
+        deletePost,
       }}
     >
       {children}

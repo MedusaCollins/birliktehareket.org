@@ -1,6 +1,7 @@
 import { usePostContext } from "@/context/PostContext";
-import Image from "next/image";
 import React from "react";
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Supporters = () => {
   const { post } = usePostContext();
@@ -9,37 +10,21 @@ const Supporters = () => {
   return (
     <>
       {post.supporters?.map(
-        (
-          supporter: {
-            date: string;
-            userId: string;
-            userImage?: string;
-            username?: string;
-          },
-          index: number,
-        ) => {
+        (supporter: { date: string; userId: string; userImage?: string; username?: string }) => {
           return (
-            <div
-              key={index}
-              className="flex flex-col justify-items items-center"
-            >
-              {supporter.userImage && (
-                <Image
-                  key={index}
-                  src={supporter.userImage}
-                  alt="avatar"
-                  width={100}
-                  height={100}
-                  onClick={() => console.log("kullanıcı profiline git")}
-                  className="w-12 h-12 rounded-full hover:cursor-pointer"
-                />
-              )}
-              <h3 onClick={() => console.log("kullanıcı profiline git")}>
-                {supporter.username}
-              </h3>
-            </div>
+            <Link key={supporter.userId} href={`/profile/${supporter.userId}`}>
+              <div className="flex flex-col justify-items items-center">
+                <Avatar className="w-12 h-12">
+                  <AvatarImage src={supporter.userImage} className="object-cover" />
+                  <AvatarFallback className="text-sm font-semibold">
+                    {supporter.username?.slice(0, 2).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <h3 className="truncate max-w-[83px]">{supporter.username}</h3>
+              </div>
+            </Link>
           );
-        },
+        }
       )}
     </>
   );

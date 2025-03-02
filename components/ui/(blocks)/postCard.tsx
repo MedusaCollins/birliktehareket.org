@@ -23,32 +23,23 @@ const PostCard: React.FC<PostCardProps> = ({ post, subject }) => {
           alt="post-image"
           width={520}
           height={10}
-          className="w-full h-full rounded-lg duration-300"
+          className="w-full h-full aspect-video object-cover rounded-lg duration-300"
         />
       </div>
 
       <div className="space-y-3">
         <div>
-          {subject && (
-            <h1 className="text-lg font-bold text-green-700 truncate">
-              {subject}
-            </h1>
-          )}
+          {subject && <h1 className="text-lg font-bold text-green-700 truncate">{subject}</h1>}
 
-          <h1 className="text-lg font-semibold text-slate-800 truncate">
-            {post.title}
-          </h1>
+          <h1 className="text-lg font-semibold text-slate-800 truncate">{post.title}</h1>
         </div>
         <ProgressBar post={post} />
 
-        <h3 className="text-sm font-medium text-slate-600 truncate">
-          {post.organizer}
-        </h3>
+        <h3 className="text-sm font-medium text-slate-600 truncate">{post.organizer}</h3>
 
         <p className="text-xs text-slate-600 truncate flex items-center">
           <UsersRound className="w-4 h-4 mr-1 text-slate-500" />
-          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe
-          katılıyor!
+          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe katılıyor!
         </p>
 
         <div className="flex justify-between items-center text-xs text-slate-500 mt-2">
