@@ -8,46 +8,35 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userNotFound, setUserNotFound] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState<User | null>(null);
-  const [profileData, setProfileData] = useState<User | null>(null);
 
   const checkAuthStatus = async () => {
     try {
-      const res = await axios.get("/api/auth/check-token");
-
-      if (res.data.isLoggedIn && !userInfo) {
-        getUserInfo(res.data.userId);
+      const { data } = await axios.get("/api/auth/check-token");
+      setIsLoggedIn(data.isLoggedIn);
+      if (data.isLoggedIn && !userInfo) {
+        await fetchUserInfo(data.userId);
       }
-
-      setIsLoggedIn(res.data.isLoggedIn);
     } catch (error) {
       console.error("Error checking auth status:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const getUserInfo = async (id: string) => {
+  const fetchUserInfo = async (id: string) => {
     try {
-      const res = await axios.post("/api/user", { userId: id });
-      setUserInfo(res.data.userInfo);
+      const { data } = await axios.post(`/api/user/${id}`);
+      setUserInfo(data.userInfo);
     } catch (error) {
-      console.error("Error getting user info:", error);
-    }
-  };
-
-  const getProfileData = async (id: string) => {
-    try {
-      const res = await axios.post("/api/user", { userId: id });
-      setProfileData(res.data.userInfo);
-    } catch (error) {
-      setUserNotFound(true);
-      console.error("Error getting user info:", error);
+      console.error("Error fetching user info:", error);
     }
   };
 
   const logout = async () => {
     try {
-      await fetch("/api/auth/logout", { method: "GET", credentials: "include" });
+      await axios.get("/api/auth/logout", { withCredentials: true });
       setIsLoggedIn(false);
       setUserInfo(null);
     } catch (error) {
@@ -57,19 +46,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     checkAuthStatus();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <AuthContext.Provider
       value={{
         isLoggedIn,
         userInfo,
-        userNotFound,
-        profileData,
+        loading,
+        fetchUserInfo,
         checkAuthStatus,
-        getProfileData,
-        setIsLoggedIn,
-
         logout,
       }}
     >

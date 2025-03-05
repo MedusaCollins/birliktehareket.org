@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/database/mongodb";
 import { ObjectId } from "mongodb";
-import { User } from "@/lib/types";
-
-interface Walk {
-  _id: ObjectId;
-}
+import { User, Post } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,7 +18,7 @@ export async function POST(request: NextRequest) {
     const client = await clientPromise;
     const db = client.db("Users");
     const users = db.collection<User>("accounts");
-    const walks = db.collection<Walk>("walks");
+    const walks = db.collection<Post>("walks");
 
     const user = await users.findOne({ _id: new ObjectId(userId) });
 

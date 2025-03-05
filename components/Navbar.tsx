@@ -27,6 +27,8 @@ export default function Navbar(): JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
 
+  //console.log(userInfo);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY > 0);
@@ -55,14 +57,6 @@ export default function Navbar(): JSX.Element {
       router.push(`/discover/search/${searchTerm}`);
     }
   };
-
-  if (isLoggedIn && !userInfo) {
-    return (
-      <div className="w-full h-16 flex justify-center items-center">
-        <div className="w-5 h-5 border-4 border-gray-200 rounded-full animate-spin" />
-      </div>
-    );
-  }
 
   return (
     <header
@@ -100,7 +94,7 @@ export default function Navbar(): JSX.Element {
             <MagnifyingGlassIcon className="w-5 h-5 absolute right-3" />
           </Link>
         </div>
-        {isLoggedIn ? (
+        {isLoggedIn && userInfo ? (
           <div className="space-x-6 hidden md:flex items-center">
             <Link href={"/create-walk"}>
               <Button variant="default">Yürüyüş Düzenle</Button>
@@ -109,37 +103,31 @@ export default function Navbar(): JSX.Element {
               <div className="flex items-center gap-2">
                 <DropdownMenuTrigger asChild>
                   <Avatar className="w-10 h-10">
-                    <AvatarImage src={userInfo?.image} className="object-cover" />
+                    <AvatarImage src={userInfo.image} className="object-cover" />
                     <AvatarFallback className="text-sm font-semibold">
-                      {userInfo?.username.slice(0, 2).toUpperCase()}
+                      {userInfo.username.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
               </div>
               <DropdownMenuContent className="w-52 mt-3 p-2 flex flex-col ">
                 <DropdownMenuItem>
-                  <Link href={`/profile/${userInfo?.id}/about`} className="flex items-center">
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <UserIcon className="w-4 h-4 mr-2" /> Profile
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link
-                    href={`/profile/${userInfo?.id}/attendedwalks`}
-                    className="flex items-center"
-                  >
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <UserCheckIcon className="w-4 h-4 mr-2" /> Attended Walks
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link
-                    href={`/profile/${userInfo?.id}/organizedwalks`}
-                    className="flex items-center"
-                  >
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <FlagIcon className="w-4 h-4 mr-2" /> Organized Walks
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href={`/profile/${userInfo?.id}/settings`} className="flex items-center">
+                  <Link href={`/profile/${userInfo.id}`} className="flex items-center">
                     <Settings className="w-4 h-4 mr-2" /> Settings
                   </Link>
                 </DropdownMenuItem>
@@ -171,7 +159,7 @@ export default function Navbar(): JSX.Element {
                 <Image src={Logo} alt="logo" height={60} width={60} />
               </SheetHeader>
               {isLoggedIn ? (
-                <Link href={`/profile/${userInfo?.id}/about`}>
+                <Link href={`/profile/${userInfo?.id}`}>
                   <Avatar className="w-10 h-10">
                     <AvatarImage src={userInfo?.image} className="object-cover" />
                     <AvatarFallback className="text-sm font-semibold">

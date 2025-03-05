@@ -16,17 +16,22 @@ import { z } from "zod";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { Post } from "@/lib/types";
+import { CreatePost } from "@/lib/types";
 import { useAuth } from "@/context/AuthContext";
-type CreateWalkFormData = z.infer<typeof Post>;
+
+type CreateWalkFormData = z.infer<typeof CreatePost>;
 
 export default function CreateWalk() {
   const { toast } = useToast();
   const { userInfo } = useAuth();
   const router = useRouter();
 
+  if (!userInfo) {
+    router.push("/auth/login");
+  }
+
   const form = useForm<CreateWalkFormData>({
-    resolver: zodResolver(Post),
+    resolver: zodResolver(CreatePost),
     defaultValues: {
       title: "",
       description: "",

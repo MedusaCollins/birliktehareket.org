@@ -3,15 +3,15 @@ import formatPeople from "@/lib/helpers/formatPeople";
 import { Post } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, MapPin } from "lucide-react";
+import { Clock, MapPin, UsersRound } from "lucide-react";
 import ProgressBar from "./progressBar";
 
 interface PostCardProps {
   post: Post;
-  isLarge?: boolean;
+  subject?: string;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ post }) => {
+const PostCard: React.FC<PostCardProps> = ({ post, subject }) => {
   return (
     <Link
       href={`/discover/id/${post._id}`}
@@ -23,23 +23,23 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           alt="post-image"
           width={520}
           height={10}
-          className="w-full h-full rounded-t-lg duration-300"
+          className="w-full h-full aspect-video object-cover rounded-lg duration-300"
         />
-        <ProgressBar post={post} basic />
       </div>
 
       <div className="space-y-3">
-        <h1 className="text-lg font-semibold text-slate-800 truncate">
-          {post.title}
-        </h1>
+        <div>
+          {subject && <h1 className="text-lg font-bold text-green-700 truncate">{subject}</h1>}
 
-        <h3 className="text-sm font-medium text-slate-600 truncate">
-          {post.organizer}
-        </h3>
+          <h1 className="text-lg font-semibold text-slate-800 truncate">{post.title}</h1>
+        </div>
+        <ProgressBar post={post} />
 
-        <p className="text-xs text-slate-600 truncate">
-          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe
-          katılıyor!
+        <h3 className="text-sm font-medium text-slate-600 truncate">{post.organizer}</h3>
+
+        <p className="text-xs text-slate-600 truncate flex items-center">
+          <UsersRound className="w-4 h-4 mr-1 text-slate-500" />
+          {formatPeople(post.supporters?.length || 0)} kişi bu yürüyüşe katılıyor!
         </p>
 
         <div className="flex justify-between items-center text-xs text-slate-500 mt-2">
